@@ -1,0 +1,1682 @@
+[
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2019-03-01"
+    },
+    "id": "999999",
+    "source": "tuss-24",
+    "display_name": "CBO do prestador solicitante desconhecido ou não informado"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "516210",
+    "source": "tuss-24",
+    "display_name": "Cuidador de idosos"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "322230",
+    "source": "tuss-24",
+    "display_name": "Auxiliar de enfermagem "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "322225",
+    "source": "tuss-24",
+    "display_name": "Instrumentador cirúrgico"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "322220",
+    "source": "tuss-24",
+    "display_name": "Técnico de enfermagem psiquiátrica "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "322205",
+    "source": "tuss-24",
+    "display_name": "Técnico de enfermagem "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2023-04-30",
+      "inicio_vigencia": "2021-12-01"
+    },
+    "id": "322135",
+    "source": "tuss-24",
+    "display_name": "Doula"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2023-04-30",
+      "inicio_vigencia": "2021-12-01"
+    },
+    "id": "322125",
+    "source": "tuss-24",
+    "display_name": "Terapeuta holístico"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2023-04-30",
+      "inicio_vigencia": "2021-12-01"
+    },
+    "id": "322120",
+    "source": "tuss-24",
+    "display_name": "Massoterapeuta"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "251605",
+    "source": "tuss-24",
+    "display_name": "Assistente social "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2023-04-30",
+      "inicio_vigencia": "2021-12-01"
+    },
+    "id": "251555",
+    "source": "tuss-24",
+    "display_name": "Psicólogo acupunturista"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "251550",
+    "source": "tuss-24",
+    "display_name": "Psicanalista "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "251545",
+    "source": "tuss-24",
+    "display_name": "Neuropsicólogo "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "251510",
+    "source": "tuss-24",
+    "display_name": "Psicólogo clínico "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2023-04-30",
+      "inicio_vigencia": "2021-12-01"
+    },
+    "id": "239445",
+    "source": "tuss-24",
+    "display_name": "Neuropsicopedagogo institucional"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2023-04-30",
+      "inicio_vigencia": "2021-12-01"
+    },
+    "id": "239440",
+    "source": "tuss-24",
+    "display_name": "Neuropsicopedagogo clinico"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "239425",
+    "source": "tuss-24",
+    "display_name": "Psicopedagogo "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2023-04-30",
+      "inicio_vigencia": "2021-12-01"
+    },
+    "id": "226320",
+    "source": "tuss-24",
+    "display_name": "Naturólogo"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2023-04-30",
+      "inicio_vigencia": "2021-12-01"
+    },
+    "id": "226315",
+    "source": "tuss-24",
+    "display_name": "Equoterapeuta"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2023-04-30",
+      "inicio_vigencia": "2021-12-01"
+    },
+    "id": "226310",
+    "source": "tuss-24",
+    "display_name": "Arteterapeuta"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2023-04-30",
+      "inicio_vigencia": "2021-08-01"
+    },
+    "id": "226305",
+    "source": "tuss-24",
+    "display_name": "Musicoterapeuta"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2023-04-30",
+      "inicio_vigencia": "2021-12-01"
+    },
+    "id": "226110",
+    "source": "tuss-24",
+    "display_name": "Osteopata"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2023-04-30",
+      "inicio_vigencia": "2021-12-01"
+    },
+    "id": "226105",
+    "source": "tuss-24",
+    "display_name": "Quiropraxista"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2023-04-30",
+      "inicio_vigencia": "2021-12-01"
+    },
+    "id": "225355",
+    "source": "tuss-24",
+    "display_name": "Médico radiologista intervencionista"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225350",
+    "source": "tuss-24",
+    "display_name": "Médico neurofisiologista "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2013-12-01"
+    },
+    "id": "225345",
+    "source": "tuss-24",
+    "display_name": "Médico hiperbarista"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2013-12-01"
+    },
+    "id": "225340",
+    "source": "tuss-24",
+    "display_name": "Médico hemoterapeuta"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2013-12-01"
+    },
+    "id": "225335",
+    "source": "tuss-24",
+    "display_name": "Médico patologista clínico / medicina laboratorial"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225330",
+    "source": "tuss-24",
+    "display_name": "Médico radioterapeuta "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2013-12-01"
+    },
+    "id": "225325",
+    "source": "tuss-24",
+    "display_name": "Médico patologista"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225320",
+    "source": "tuss-24",
+    "display_name": "Médico em radiologia e diagnóstico por imagem "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225315",
+    "source": "tuss-24",
+    "display_name": "Médico em medicina nuclear "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225310",
+    "source": "tuss-24",
+    "display_name": "Médico em endoscopia "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225305",
+    "source": "tuss-24",
+    "display_name": "Médico citopatologista "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2013-12-01"
+    },
+    "id": "225295",
+    "source": "tuss-24",
+    "display_name": "Médico cirurgião da mão"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2013-12-01"
+    },
+    "id": "225290",
+    "source": "tuss-24",
+    "display_name": "Médico cancerologista cirúrgico"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225285",
+    "source": "tuss-24",
+    "display_name": "Médico urologista "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225280",
+    "source": "tuss-24",
+    "display_name": "Médico proctologista "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225275",
+    "source": "tuss-24",
+    "display_name": "Médico otorrinolaringologista "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225270",
+    "source": "tuss-24",
+    "display_name": "Médico ortopedista e traumatologista "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225265",
+    "source": "tuss-24",
+    "display_name": "Médico oftalmologista"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225260",
+    "source": "tuss-24",
+    "display_name": "Médico  neurocirurgião"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225255",
+    "source": "tuss-24",
+    "display_name": "Médico Mastologista"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225250",
+    "source": "tuss-24",
+    "display_name": "Médico ginecologista e obstetra "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225240",
+    "source": "tuss-24",
+    "display_name": "Médico cirurgião torácico "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225235",
+    "source": "tuss-24",
+    "display_name": "Médico cirurgião plástico "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225230",
+    "source": "tuss-24",
+    "display_name": "Médico cirurgião pediátrico "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225225",
+    "source": "tuss-24",
+    "display_name": "Médico cirurgião geral "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225220",
+    "source": "tuss-24",
+    "display_name": "Médico cirurgião do aparelho digestivo "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225215",
+    "source": "tuss-24",
+    "display_name": "Médico cirurgião de cabeça e pescoço "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225210",
+    "source": "tuss-24",
+    "display_name": "Médico cirurgião cardiovascular "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2013-12-01"
+    },
+    "id": "225203",
+    "source": "tuss-24",
+    "display_name": "Médico em cirurgia vascular"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225195",
+    "source": "tuss-24",
+    "display_name": "Médico Homeopata"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225185",
+    "source": "tuss-24",
+    "display_name": "Médico Hematologista"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225180",
+    "source": "tuss-24",
+    "display_name": "Médico geriatra "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225175",
+    "source": "tuss-24",
+    "display_name": "Médico geneticista "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225170",
+    "source": "tuss-24",
+    "display_name": "Médico generalista "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225165",
+    "source": "tuss-24",
+    "display_name": "Médico gastroenterologista "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225160",
+    "source": "tuss-24",
+    "display_name": "Médico fisiatra "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225155",
+    "source": "tuss-24",
+    "display_name": "Médico endocrinologista e metabologista "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2016-11-30",
+      "inicio_vigencia": "2016-06-01"
+    },
+    "id": "225154",
+    "source": "tuss-24",
+    "display_name": "Médico antroposófico"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2013-12-01"
+    },
+    "id": "225151",
+    "source": "tuss-24",
+    "display_name": "Médico anestesiologista"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225150",
+    "source": "tuss-24",
+    "display_name": "Médico em medicina intensiva "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225148",
+    "source": "tuss-24",
+    "display_name": "Médico anatomopatologista"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225145",
+    "source": "tuss-24",
+    "display_name": "Médico em medicina de tráfego "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2013-12-01"
+    },
+    "id": "225142",
+    "source": "tuss-24",
+    "display_name": "Médico da estratégia de saúde da família"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225140",
+    "source": "tuss-24",
+    "display_name": "Médico do trabalho "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225139",
+    "source": "tuss-24",
+    "display_name": "Médico sanitarista"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225136",
+    "source": "tuss-24",
+    "display_name": "Médico reumatologista "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225135",
+    "source": "tuss-24",
+    "display_name": "Médico dermatologista "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225133",
+    "source": "tuss-24",
+    "display_name": "Médico psiquiatra "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225130",
+    "source": "tuss-24",
+    "display_name": "Médico de família e comunidade"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225127",
+    "source": "tuss-24",
+    "display_name": "Médico pneumologista "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225125",
+    "source": "tuss-24",
+    "display_name": "Médico clínico"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225124",
+    "source": "tuss-24",
+    "display_name": "Médico pediatra"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2013-12-01"
+    },
+    "id": "225122",
+    "source": "tuss-24",
+    "display_name": "Médico cancerologista pediátrico"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2013-12-01"
+    },
+    "id": "225121",
+    "source": "tuss-24",
+    "display_name": "Médico oncologista clínico"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225120",
+    "source": "tuss-24",
+    "display_name": "Médico cardiologista "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225118",
+    "source": "tuss-24",
+    "display_name": "Médico nutrologista "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225115",
+    "source": "tuss-24",
+    "display_name": "Médico angiologista "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225112",
+    "source": "tuss-24",
+    "display_name": "Médico neurologista "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225110",
+    "source": "tuss-24",
+    "display_name": "Médico alergista e imunologista"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225109",
+    "source": "tuss-24",
+    "display_name": "Médico Nefrologista"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225106",
+    "source": "tuss-24",
+    "display_name": "Médico legista"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225105",
+    "source": "tuss-24",
+    "display_name": "Médico acupunturista "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "225103",
+    "source": "tuss-24",
+    "display_name": "Médico infectologista "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2023-04-30",
+      "inicio_vigencia": "2021-12-01"
+    },
+    "id": "224140",
+    "source": "tuss-24",
+    "display_name": "Profissional de educação física na saúde"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2023-04-30",
+      "inicio_vigencia": "2021-08-01"
+    },
+    "id": "224135",
+    "source": "tuss-24",
+    "display_name": "Treinador profissional de futebol"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2023-04-30",
+      "inicio_vigencia": "2021-08-01"
+    },
+    "id": "224130",
+    "source": "tuss-24",
+    "display_name": "Técnico de laboratório e fiscalização desportiva"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2023-04-30",
+      "inicio_vigencia": "2021-08-01"
+    },
+    "id": "224125",
+    "source": "tuss-24",
+    "display_name": "Técnico de desporto individual e coletivo (exceto futebol)"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2023-04-30",
+      "inicio_vigencia": "2021-08-01"
+    },
+    "id": "224120",
+    "source": "tuss-24",
+    "display_name": "Preparador físico"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2023-04-30",
+      "inicio_vigencia": "2021-08-01"
+    },
+    "id": "224115",
+    "source": "tuss-24",
+    "display_name": "Preparador de atleta"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2023-04-30",
+      "inicio_vigencia": "2021-08-01"
+    },
+    "id": "224110",
+    "source": "tuss-24",
+    "display_name": "Ludomotricista"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2023-04-30",
+      "inicio_vigencia": "2021-08-01"
+    },
+    "id": "224105",
+    "source": "tuss-24",
+    "display_name": "Avaliador físico"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2023-04-30",
+      "inicio_vigencia": "2021-12-01"
+    },
+    "id": "223915",
+    "source": "tuss-24",
+    "display_name": "Psicomotricista"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "223910",
+    "source": "tuss-24",
+    "display_name": "Ortoptista "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2012-10-10"
+    },
+    "id": "223905",
+    "source": "tuss-24",
+    "display_name": "Terapeuta ocupacional "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2016-11-30",
+      "inicio_vigencia": "2016-06-01"
+    },
+    "id": "223845",
+    "source": "tuss-24",
+    "display_name": "Fonoaudiólogo em voz"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2016-11-30",
+      "inicio_vigencia": "2016-06-01"
+    },
+    "id": "223840",
+    "source": "tuss-24",
+    "display_name": "Fonoaudiólogo em saúde coletiva"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2016-11-30",
+      "inicio_vigencia": "2016-06-01"
+    },
+    "id": "223835",
+    "source": "tuss-24",
+    "display_name": "Fonoaudiólogo em motricidade orofacial"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2016-11-30",
+      "inicio_vigencia": "2016-06-01"
+    },
+    "id": "223830",
+    "source": "tuss-24",
+    "display_name": "Fonoaudiólogo em linguagem"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2016-11-30",
+      "inicio_vigencia": "2016-06-01"
+    },
+    "id": "223825",
+    "source": "tuss-24",
+    "display_name": "Fonoaudiólogo em disfagia"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2016-11-30",
+      "inicio_vigencia": "2016-06-01"
+    },
+    "id": "223820",
+    "source": "tuss-24",
+    "display_name": "Fonoaudiólogo em audiologia"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2016-11-30",
+      "inicio_vigencia": "2016-06-01"
+    },
+    "id": "223815",
+    "source": "tuss-24",
+    "display_name": "Fonoaudiólogo educacional"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "223810",
+    "source": "tuss-24",
+    "display_name": "Fonoaudiólogo "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "223710",
+    "source": "tuss-24",
+    "display_name": "Nutricionista "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "223705",
+    "source": "tuss-24",
+    "display_name": "Dietista"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2016-07-31",
+      "inicio_vigencia": "2016-05-01"
+    },
+    "id": "223660",
+    "source": "tuss-24",
+    "display_name": "Fisioterapeuta  do trabalho"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2016-07-31",
+      "inicio_vigencia": "2016-05-01"
+    },
+    "id": "223655",
+    "source": "tuss-24",
+    "display_name": "Fisioterapeuta esportivo"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2016-07-31",
+      "inicio_vigencia": "2016-05-01"
+    },
+    "id": "223650",
+    "source": "tuss-24",
+    "display_name": "Fisioterapeuta acupunturista"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2016-07-31",
+      "inicio_vigencia": "2016-05-01"
+    },
+    "id": "223645",
+    "source": "tuss-24",
+    "display_name": "Fisioterapeuta quiropraxista"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2016-07-31",
+      "inicio_vigencia": "2016-05-01"
+    },
+    "id": "223640",
+    "source": "tuss-24",
+    "display_name": "Fisioterapeuta osteopata"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2016-07-31",
+      "inicio_vigencia": "2016-05-01"
+    },
+    "id": "223635",
+    "source": "tuss-24",
+    "display_name": "Fisioterapeuta traumato-ortopédica funcional"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2016-07-31",
+      "inicio_vigencia": "2016-05-01"
+    },
+    "id": "223630",
+    "source": "tuss-24",
+    "display_name": "Fisioterapeuta neurofuncional"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2016-07-31",
+      "inicio_vigencia": "2016-05-01"
+    },
+    "id": "223625",
+    "source": "tuss-24",
+    "display_name": "Fisioterapeuta respiratória"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "223605",
+    "source": "tuss-24",
+    "display_name": "Fisioterapeuta geral"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2016-11-30",
+      "inicio_vigencia": "2016-06-01"
+    },
+    "id": "223570",
+    "source": "tuss-24",
+    "display_name": "Perfusionista"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2016-11-30",
+      "inicio_vigencia": "2016-06-01"
+    },
+    "id": "223565",
+    "source": "tuss-24",
+    "display_name": "Enfermeiro da estratégia de saúde da família"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "223560",
+    "source": "tuss-24",
+    "display_name": "Enfermeiro sanitarista"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "223555",
+    "source": "tuss-24",
+    "display_name": "Enfermeiro puericultor e pediátrico "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "223550",
+    "source": "tuss-24",
+    "display_name": "Enfermeiro psiquiátrico "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "223545",
+    "source": "tuss-24",
+    "display_name": "Enfermeiro obstétrico"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "223540",
+    "source": "tuss-24",
+    "display_name": "Enfermeiro neonatologista"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "223535",
+    "source": "tuss-24",
+    "display_name": "Enfermeiro nefrologista "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "223530",
+    "source": "tuss-24",
+    "display_name": "Enfermeiro do trabalho "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "223525",
+    "source": "tuss-24",
+    "display_name": "Enfermeiro de terapia intensiva "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "223520",
+    "source": "tuss-24",
+    "display_name": "Enfermeiro de centro cirúrgico "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "223515",
+    "source": "tuss-24",
+    "display_name": "Enfermeiro de bordo "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "223510",
+    "source": "tuss-24",
+    "display_name": "Enfermeiro auditor "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "223505",
+    "source": "tuss-24",
+    "display_name": "Enfermeiro "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2016-11-30",
+      "inicio_vigencia": "2016-06-01"
+    },
+    "id": "223445",
+    "source": "tuss-24",
+    "display_name": "Farmacêutico hospitalar e clínico"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2016-11-30",
+      "inicio_vigencia": "2016-06-01"
+    },
+    "id": "223440",
+    "source": "tuss-24",
+    "display_name": "Farmacêutico toxicologista"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2016-11-30",
+      "inicio_vigencia": "2016-06-01"
+    },
+    "id": "223435",
+    "source": "tuss-24",
+    "display_name": "Farmacêutico industrial"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2016-11-30",
+      "inicio_vigencia": "2016-06-01"
+    },
+    "id": "223430",
+    "source": "tuss-24",
+    "display_name": "Farmacêutico em saúde pública"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2016-11-30",
+      "inicio_vigencia": "2016-06-01"
+    },
+    "id": "223425",
+    "source": "tuss-24",
+    "display_name": "Farmacêutico práticas integrativas e complementares"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2016-11-30",
+      "inicio_vigencia": "2016-06-01"
+    },
+    "id": "223420",
+    "source": "tuss-24",
+    "display_name": "Farmacêutico de alimentos"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2016-11-30",
+      "inicio_vigencia": "2016-06-01"
+    },
+    "id": "223415",
+    "source": "tuss-24",
+    "display_name": "Farmacêutico analista clínico"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "223405",
+    "source": "tuss-24",
+    "display_name": "Farmacêutico "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2013-12-01"
+    },
+    "id": "223293",
+    "source": "tuss-24",
+    "display_name": "Cirurgião-dentista da estratégia de saúde da família"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2013-12-01"
+    },
+    "id": "223288",
+    "source": "tuss-24",
+    "display_name": "Cirurgião dentista - odontologia para pacientes com necessidades especiais"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2013-12-01"
+    },
+    "id": "223284",
+    "source": "tuss-24",
+    "display_name": "Cirurgião dentista - disfunção temporomandibular e dor orofacial"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2013-12-01"
+    },
+    "id": "223280",
+    "source": "tuss-24",
+    "display_name": "Cirurgião dentista - dentística"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2014-08-31",
+      "inicio_vigencia": "2013-12-01"
+    },
+    "id": "223276",
+    "source": "tuss-24",
+    "display_name": "Cirurgião dentista - odontologia do trabalho"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "223272",
+    "source": "tuss-24",
+    "display_name": "Cirurgião dentista de saúde coletiva "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "223268",
+    "source": "tuss-24",
+    "display_name": "Cirurgião dentista - traumatologista bucomaxilofacial "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "223264",
+    "source": "tuss-24",
+    "display_name": "Cirurgião dentista - reabilitador oral "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "223260",
+    "source": "tuss-24",
+    "display_name": "Cirurgião dentista - radiologista "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "223256",
+    "source": "tuss-24",
+    "display_name": "Cirurgião dentista - protesista "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "223252",
+    "source": "tuss-24",
+    "display_name": "Cirurgião dentista - protesiólogo bucomaxilofacial "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "223248",
+    "source": "tuss-24",
+    "display_name": "Cirurgião dentista - periodontista "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "223244",
+    "source": "tuss-24",
+    "display_name": "Cirurgião dentista - patologista bucal "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "223240",
+    "source": "tuss-24",
+    "display_name": "Cirurgião dentista - ortopedista e ortodontista "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "223236",
+    "source": "tuss-24",
+    "display_name": "Cirurgião dentista - odontopediatra "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "223232",
+    "source": "tuss-24",
+    "display_name": "Cirurgião dentista - odontologista legal "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "223228",
+    "source": "tuss-24",
+    "display_name": "Cirurgião dentista - odontogeriatra "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "223224",
+    "source": "tuss-24",
+    "display_name": "Cirurgião dentista - implantodontista "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "223220",
+    "source": "tuss-24",
+    "display_name": "Cirurgião dentista - estomatologista "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "223216",
+    "source": "tuss-24",
+    "display_name": "Cirurgião dentista - epidemiologista "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "223212",
+    "source": "tuss-24",
+    "display_name": "Cirurgião dentista - endodontista "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "223208",
+    "source": "tuss-24",
+    "display_name": "Cirurgião dentista - clínico geral "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "223204",
+    "source": "tuss-24",
+    "display_name": "Cirurgião dentista - auditor "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2023-04-30",
+      "inicio_vigencia": "2021-08-01"
+    },
+    "id": "221205",
+    "source": "tuss-24",
+    "display_name": "Biomédico"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "221105",
+    "source": "tuss-24",
+    "display_name": "Biólogo "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "213150",
+    "source": "tuss-24",
+    "display_name": "Físico médico "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "203015",
+    "source": "tuss-24",
+    "display_name": "Pesquisador em biologia de microorganismos e parasitas "
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2008-09-26",
+      "inicio_vigencia": "2008-09-26"
+    },
+    "id": "201115",
+    "source": "tuss-24",
+    "display_name": "Geneticista"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2023-04-30",
+      "inicio_vigencia": "2021-12-01"
+    },
+    "id": "131220",
+    "source": "tuss-24",
+    "display_name": "Gerontólogo"
+  },
+  {
+    "extras": {
+      "fim_vigencia": "-",
+      "fim_implantacao": "2025-11-30",
+      "inicio_vigencia": "2025-06-01"
+    },
+    "id": "223575",
+    "source": "tuss-24",
+    "display_name": "Obstetriz"
+  }
+]
