@@ -19,7 +19,12 @@
     "prod:logs": "docker compose -f docker-compose.prod.yml logs -f",
     "prod:ps": "docker compose -f docker-compose.prod.yml ps",
     "clean": "docker compose down -v --remove-orphans",
-    "clean:all": "docker compose down -v --remove-orphans && docker compose -f docker-compose.prod.yml down -v --remove-orphans"
+    "clean:all": "docker compose down -v --remove-orphans && docker compose -f docker-compose.prod.yml down -v --remove-orphans",
+    "local:install": "npm --prefix backend install && npm --prefix frontend install",
+    "local:db": "docker compose up db -d",
+    "local:backend": "npm --prefix backend run dev",
+    "local:frontend": "npm --prefix frontend run dev",
+    "local:seed": "npm --prefix backend run seed"
   },
   "keywords": [
     "docker",
