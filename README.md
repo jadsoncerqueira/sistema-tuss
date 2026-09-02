@@ -24,9 +24,10 @@
 
 No ecossistema de saúde suplementar brasileiro, a **Terminologia Unificada da Saúde Suplementar (TUSS)**, padronizada pela **ANS (Agência Nacional de Saúde Suplementar)**, é a espinha dorsal de faturamento, auditoria médica, prescrição e autorização de guias entre operadoras, hospitais, laboratórios e clínicas.
 
-Na prática diária, profissionais de saúde e faturistas precisam consultar catálogos gigantescos contendo centenas de milhares de materiais médicos (OPME), medicamentos comerciais, diárias hospitalares e códigos de procedimentos.
+Este projeto foi desenvolvido por **Jadson Cerqueira** como parte da aplicação e consolidação prática dos conhecimentos adquiridos no curso de **Engenharia de Software**. O objetivo principal foi enfrentar um desafio real de engenharia: **como modelar, otimizar e servir uma base volumosa com quase 1,5 milhão de registros** garantindo consultas muito rápidas em frações de segundo e eliminando gargalos de I/O e processamento no banco relacional, mesmo com múltiplos filtros simultâneos.
 
-A maioria dos sistemas legados sofre com consultas lentas, buscas que travam em termos curtos ou falhas ao lidar com termos sem acento e sinônimos. Este projeto nasceu para resolver exatamente essa dor: **entregar uma experiência de busca instantânea, inteligente e confiável sobre 1,44 milhão de registros**, combinando engenharia de banco de dados no PostgreSQL com uma arquitetura moderna em Node.js e React.
+> 🤖 **Engenharia Assistida por Inteligência Artificial (AI-Assisted Development):**  
+> A Inteligência Artificial foi utilizada ativamente ao longo de todo o ciclo de desenvolvimento como aceleradora de produtividade e ferramenta de *pair programming* (apoio no scaffolding, testes de carga, refinamento de expressões de busca e documentação). Todas as decisões arquiteturais (padrão MVC, isolamento de camadas), modelagem relacional, estratégias de indexação invertida GIN no PostgreSQL, planos de execução e orquestração em Docker foram projetadas, implementadas e homologadas pelo autor.
 
 ### 📊 Base de Dados Unificada
 
@@ -159,6 +160,13 @@ FROM candidates
 ORDER BY relevance_score DESC, id ASC
 LIMIT $3 OFFSET $4;
 ```
+
+### 5. 🤖 Engenharia Assistida por IA (AI-Assisted Engineering)
+
+O uso de Inteligência Artificial foi incorporado como metodologia de trabalho e aceleração de desenvolvimento:
+
+- **Papel da IA:** Atuou como ferramenta avançada de *pair programming*, apoiando na prototipagem ágil de componentes de UI, redução de código boilerplate, geração de massas e scripts para testes de estresse e documentação técnica.
+- **Papel do Engenheiro de Software (Autor):** Responsável por todas as tomadas de decisão arquiteturais (adoção do MVC, isolamento de domínios), modelagem e relacionamento de tabelas, análise profunda de custos de planos de execução (`EXPLAIN ANALYZE`), escolha e calibração dos índices GIN/Trigram e orquestração de infraestrutura com Docker e Nginx.
 
 ---
 
