@@ -24,9 +24,9 @@
 
 No ecossistema de saúde suplementar brasileiro, a **Terminologia Unificada da Saúde Suplementar (TUSS)**, padronizada pela **ANS (Agência Nacional de Saúde Suplementar)**, reúne catálogos extensos de medicamentos, diárias hospitalares, procedimentos e mais de 1,3 milhão de materiais e próteses (OPME).
 
-Este projeto foi desenvolvido por **Jadson Cerqueira** como consolidação prática do curso de **Engenharia de Software**, abordando um desafio comum em sistemas com grandes volumes: **como modelar, otimizar e servir uma base de quase 1,5 milhão de registros sem gargalos de CPU e I/O**, garantindo respostas em frações de segundo. 
+Este projeto foi desenvolvido por **Jadson Cerqueira** como consolidação prática do curso de **Engenharia de Software**, abordando um desafio comum em sistemas com grandes volumes: **como modelar, otimizar e servir uma base de quase 1,5 milhão de registros sem gargalos de CPU e I/O**, garantindo respostas em frações de segundo.
 
-Todo o desenvolvimento adotou práticas modernas de **engenharia assistida por IA**, utilizando inteligência artificial como parceira de produtividade (*pair programming*), mantendo a governança arquitetural, a modelagem relacional e os testes sob controle do desenvolvedor.
+Todo o desenvolvimento adotou práticas modernas de **engenharia assistida por IA**, utilizando inteligência artificial como parceira de produtividade (_pair programming_), mantendo a governança arquitetural, a modelagem relacional e os testes sob controle do desenvolvedor.
 
 ### 📊 Base de Dados Unificada
 
@@ -164,7 +164,7 @@ LIMIT $3 OFFSET $4;
 
 O uso de Inteligência Artificial foi incorporado como metodologia de trabalho e aceleração de desenvolvimento:
 
-- **Papel da IA:** Atuou como ferramenta avançada de *pair programming*, apoiando na prototipagem ágil de componentes de UI, redução de código boilerplate, geração de massas e scripts para testes de estresse e documentação técnica.
+- **Papel da IA:** Atuou como ferramenta avançada de _pair programming_, apoiando na prototipagem ágil de componentes de UI, redução de código boilerplate, geração de massas e scripts para testes de estresse e documentação técnica.
 - **Papel do Engenheiro de Software (Autor):** Responsável por todas as tomadas de decisão arquiteturais (adoção do MVC, isolamento de domínios), modelagem e relacionamento de tabelas, análise profunda de custos de planos de execução (`EXPLAIN ANALYZE`), escolha e calibração dos índices GIN/Trigram e orquestração de infraestrutura com Docker e Nginx.
 
 ---
@@ -301,8 +301,8 @@ npm run dev:backend
 
 > ⏳ **Atenção — Primeira Execução (Carga Inicial do Banco):**  
 > Quando você executa o projeto pela **primeira vez**, o processo de inicialização é **mais demorado (pode levar alguns minutos)**.  
-> Isso acontece porque o backend detecta automaticamente que o banco de dados está vazio e dispara o **Auto-Seed**, povoando e indexando quase **1,5 milhão de registros (1.442.892 linhas)** a partir dos arquivos oficiais da pasta `fonte/`. O banco processa os lotes, gera os vetores fonéticos de busca textual (*Full-Text Search* em português com `unaccent`), monta os índices GIN invertidos e trigramas para garantir que as buscas respondam em frações de segundo.  
->  
+> Isso acontece porque o backend detecta automaticamente que o banco de dados está vazio e dispara o **Auto-Seed**, povoando e indexando quase **1,5 milhão de registros (1.442.892 linhas)** a partir dos arquivos oficiais da pasta `fonte/`. O banco processa os lotes, gera os vetores fonéticos de busca textual (_Full-Text Search_ em português com `unaccent`), monta os índices GIN invertidos e trigramas para garantir que as buscas respondam em frações de segundo.
+>
 > 💡 **Isso ocorre apenas uma vez:** Nas próximas vezes em que subir os containers, a inicialização será imediata (em menos de 2 segundos), pois os dados ficam gravados no volume persistente do Docker (`db_data_dev`) e o cache de totais já estará pré-aquecido na memória.
 
 ---
@@ -311,12 +311,12 @@ npm run dev:backend
 
 Assim que o comando de inicialização for concluído e os containers estiverem ativos, você poderá acessar o projeto nos seguintes endereços locais:
 
-| Serviço | O que é | URL de Acesso Local |
-| :--- | :--- | :--- |
-| 🖥️ **Frontend Web (Interface SPA)** | Aplicação React 18 + Vite + Tailwind v4 (Cards de categorias, busca por Enter e modal) | [http://localhost:5173](http://localhost:5173) |
-| 🔌 **API REST (Backend Express)** | Ponto de entrada da API e documentação de status | [http://localhost:3000/api](http://localhost:3000/api) |
-| 📊 **Estatísticas da Base** | Endpoint JSON com as contagens consolidadas por tabela TUSS | [http://localhost:3000/api/stats](http://localhost:3000/api/stats) |
-| 🗄️ **Banco PostgreSQL 16** | Conexão direta com o banco relacional e motor FTS | `localhost:5432`<br>`(user: postgres \| senha: postgres \| db: tuss_db)` |
+| Serviço                             | O que é                                                                                | URL de Acesso Local                                                      |
+| :---------------------------------- | :------------------------------------------------------------------------------------- | :----------------------------------------------------------------------- |
+| 🖥️ **Frontend Web (Interface SPA)** | Aplicação React 18 + Vite + Tailwind v4 (Cards de categorias, busca por Enter e modal) | [http://localhost:5173](http://localhost:5173)                           |
+| 🔌 **API REST (Backend Express)**   | Ponto de entrada da API e documentação de status                                       | [http://localhost:3000/api](http://localhost:3000/api)                   |
+| 📊 **Estatísticas da Base**         | Endpoint JSON com as contagens consolidadas por tabela TUSS                            | [http://localhost:3000/api/stats](http://localhost:3000/api/stats)       |
+| 🗄️ **Banco PostgreSQL 16**          | Conexão direta com o banco relacional e motor FTS                                      | `localhost:5432`<br>`(user: postgres \| senha: postgres \| db: tuss_db)` |
 
 #### Para encerrar os containers:
 

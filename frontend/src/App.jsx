@@ -21,8 +21,10 @@ import {
   Briefcase,
   Stethoscope,
   Pill,
-  Package,
-  Zap
+  Zap,
+  Github,
+  Linkedin,
+  ExternalLink
 } from 'lucide-react';
 
 import { Button } from './components/ui/button';
@@ -269,7 +271,29 @@ export default function App() {
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2.5">
+            <a
+              href="https://www.linkedin.com/in/jadsoncerqueira"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:inline-flex items-center gap-1.5 text-xs font-medium text-blue-700 bg-blue-50 hover:bg-blue-100/80 border border-blue-200/60 px-3 py-1.5 rounded-full transition-colors"
+              title="LinkedIn do Engenheiro de Software (Jadson Cerqueira)"
+            >
+              <Linkedin className="h-3.5 w-3.5" />
+              <span>Jadson Cerqueira</span>
+            </a>
+
+            <a
+              href="https://github.com/jadsoncerqueira/sistema-tuss"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-700 bg-slate-100 hover:bg-slate-200/80 border border-slate-200/60 px-3 py-1.5 rounded-full transition-colors"
+              title="Código-fonte no GitHub"
+            >
+              <Github className="h-3.5 w-3.5 text-slate-800" />
+              <span className="hidden md:inline">GitHub</span>
+            </a>
+
             <div className="flex items-center gap-2 bg-slate-100 px-3 py-1.5 rounded-full text-xs font-medium text-slate-700">
               <span className={`inline-block h-2 w-2 rounded-full ${backendStatus?.message ? 'bg-emerald-500 animate-pulse' : 'bg-rose-500'}`} />
               {backendStatus?.message ? 'API Online' : 'API Offline'}
@@ -640,6 +664,50 @@ export default function App() {
           )}
         </Card>
       </main>
+
+      {/* Footer com identificação do Engenheiro de Software */}
+      <footer className="mt-16 border-t border-slate-200/80 bg-white/70 backdrop-blur py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex flex-col items-center sm:items-start text-center sm:text-left space-y-1">
+            <p className="text-sm font-semibold text-slate-900 flex flex-wrap items-center justify-center sm:justify-start gap-2">
+              <span>Desenvolvido por</span>
+              <span className="text-primary font-bold">Jadson Cerqueira</span>
+              <span className="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-full border border-slate-200 font-medium">
+                Engenheiro de Software
+              </span>
+            </p>
+            <p className="text-xs text-muted-foreground">
+              Projeto prático focado na otimização e busca de alta performance sobre grandes volumes de dados.
+            </p>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <a
+              href="https://www.linkedin.com/in/jadsoncerqueira"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-xs font-medium text-blue-700 bg-blue-50 hover:bg-blue-100 border border-blue-200 px-3 py-2 rounded-lg transition-colors"
+              title="Acessar perfil no LinkedIn"
+            >
+              <Linkedin className="h-4 w-4" />
+              <span>LinkedIn</span>
+              <ExternalLink className="h-3 w-3 text-blue-400" />
+            </a>
+
+            <a
+              href="https://github.com/jadsoncerqueira/sistema-tuss"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-800 bg-slate-100 hover:bg-slate-200 border border-slate-200 px-3 py-2 rounded-lg transition-colors"
+              title="Acessar repositório no GitHub"
+            >
+              <Github className="h-4 w-4" />
+              <span>Repositório</span>
+              <ExternalLink className="h-3 w-3 text-slate-400" />
+            </a>
+          </div>
+        </div>
+      </footer>
 
       {/* Modal de Detalhes (Shadcn Dialog Style) */}
       {selectedItem && (
