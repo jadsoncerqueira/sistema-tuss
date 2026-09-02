@@ -24,7 +24,8 @@
     "local:db": "docker compose up db -d",
     "local:backend": "npm --prefix backend run dev",
     "local:frontend": "npm --prefix frontend run dev",
-    "local:seed": "npm --prefix backend run seed"
+    "local:seed": "npm --prefix backend run seed",
+    "test:stress": "node scripts/stressTest.js"
   },
   "keywords": [
     "docker",

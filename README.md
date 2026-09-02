@@ -491,6 +491,8 @@ npm run prod:down
 | `npm run prod:build`            | Compila o frontend, constrói imagens de produção e sobe o Nginx         |
 | `npm run prod:down`             | Encerra os containers do ambiente de produção                           |
 | `npm run clean:all`             | Remove completamente todos os containers, redes e volumes criados       |
+| **Testes & Estresse**           |                                                                         |
+| `npm run test:stress`           | Executa teste de estresse automatizado com alta concorrência paralela   |
 
 ---
 
