@@ -14,13 +14,13 @@
 
 **Uma plataforma Full Stack escalável projetada para ingestão, tokenização e busca instantânea sobre mais de 1,44 milhão de registros da Terminologia Unificada da Saúde Suplementar (TUSS / ANS).**
 
-[Apresentação](#-apresentação) • [O Desafio de Engenharia](#-o-desafio-de-engenharia) • [Arquitetura & Design](#-arquitetura-do-sistema) • [Decisões Técnicas](#-decisões-técnicas--destaques-de-engenharia) • [Estudo de Performance](#-estudo-de-caso-de-otimização-de-397s-para-180ms) • [Como Rodar](#-como-executar) • [Documentação da API](#-documentação-da-api) • [Benchmarks](#-benchmarks-e-performance)
+[Apresentação](#apresentação) • [O Desafio de Engenharia](#o-desafio-de-engenharia) • [Arquitetura do Sistema](#arquitetura-do-sistema) • [Decisões Técnicas](#decisões-técnicas--destaques-de-engenharia) • [Estudo de Performance](#estudo-de-caso-de-otimização-de-397s-para-180ms) • [Tecnologias](#tecnologias-utilizadas) • [Como Executar na Máquina](#como-executar-o-projeto) • [Comandos Úteis](#comandos-úteis-packagejson) • [Documentação da API](#documentação-dos-endpoints-da-api) • [Benchmarks](#benchmarks-de-performance) • [Estrutura](#estrutura-de-diretórios)
 
 </div>
 
 ---
 
-## 📌 Apresentação
+## 📌 Apresentação <a id="apresentação"></a><a id="apresentacao"></a>
 
 No ecossistema de saúde suplementar brasileiro, a **Terminologia Unificada da Saúde Suplementar (TUSS)**, padronizada pela **ANS (Agência Nacional de Saúde Suplementar)**, é a espinha dorsal de faturamento, auditoria médica, prescrição e autorização de guias entre operadoras, hospitais, laboratórios e clínicas.
 
@@ -41,7 +41,7 @@ A maioria dos sistemas legados sofre com consultas lentas, buscas que travam em 
 
 ---
 
-## 💡 O Desafio de Engenharia
+## 💡 O Desafio de Engenharia <a id="o-desafio-de-engenharia"></a>
 
 Consultar **1,44 milhão de linhas** com resposta em menos de 100 milissegundos não é trivial para um banco relacional tradicional quando utilizamos abordagens ingênuas como `ILIKE '%termo%'`. 
 
@@ -53,7 +53,7 @@ Os três principais obstáculos superados foram:
 
 ---
 
-## 🏗 Arquitetura do Sistema
+## 🏗 Arquitetura do Sistema <a id="arquitetura-do-sistema"></a>
 
 A solução foi desenhada seguindo o **Padrão MVC (Model-View-Controller)** no backend e uma **Single Page Application (SPA)** desacoplada no frontend, orquestrada por containers Docker para desenvolvimento e produção:
 
@@ -105,7 +105,7 @@ flowchart TD
 
 ---
 
-## 🚀 Decisões Técnicas & Destaques de Engenharia
+## 🚀 Decisões Técnicas & Destaques de Engenharia <a id="decisoes-tecnicas"></a><a id="decisões-técnicas--destaques-de-engenharia"></a>
 
 ### 1. 🏛️ Arquitetura MVC Modular e Limpa
 O backend foi separado em camadas com responsabilidades bem definidas, facilitando testes, manutenção e escalabilidade:
@@ -160,7 +160,7 @@ LIMIT $3 OFFSET $4;
 
 ---
 
-## 🔥 Estudo de Caso de Otimização: De 39.7s para 180ms
+## 🔥 Estudo de Caso de Otimização: De 39.7s para 180ms <a id="estudo-de-performance"></a><a id="estudo-de-caso-de-otimização-de-397s-para-180ms"></a>
 
 ### 🔴 O Cenário Crítico (39.720 ms)
 Ao pesquisar termos curtos e muito frequentes como `"us"`:
@@ -206,7 +206,7 @@ Depois: [█] 186 ms (⚡ Redução de 99,5% no tempo de resposta)
 
 ---
 
-## 🛠 Tecnologias Utilizadas
+## 🛠 Tecnologias Utilizadas <a id="tecnologias-utilizadas"></a>
 
 | Camada | Tecnologias & Bibliotecas |
 | :--- | :--- |
@@ -217,62 +217,227 @@ Depois: [█] 186 ms (⚡ Redução de 99,5% no tempo de resposta)
 
 ---
 
-## 💻 Como Executar o Projeto
+## 💻 Como Executar o Projeto <a id="como-executar-o-projeto"></a><a id="como-executar"></a><a id="como-rodar"></a>
 
-### Pré-requisitos
-- [Docker](https://www.docker.com/) e Docker Compose instalados na máquina.
-- [Node.js](https://nodejs.org/) (opcional, caso queira rodar os comandos via `npm run`).
+Você pode rodar o Sistema TUSS na sua máquina de três maneiras diferentes:
+1. [**Opção 1: Via Docker Compose (Recomendado)**](#opcao-1-docker) — Sobe Banco, Backend e Frontend isolados em containers com 1 comando.
+2. [**Opção 2: Modo Híbrido (Banco no Docker + Backend e Frontend Nativos)**](#opcao-2-hibrida) — Ideal para desenvolvimento rápido sem instalar PostgreSQL no SO.
+3. [**Opção 3: Modo 100% Nativo na Máquina (Sem Docker)**](#opcao-3-nativa) — Roda Node.js e PostgreSQL diretamente no sistema operacional.
 
-### 1. Clonar o Repositório
+---
+
+### 📥 1. Clonar o Repositório
+
+Em qualquer uma das opções, comece clonando o repositório e entrando na pasta:
+
 ```bash
 git clone https://github.com/seu-usuario/sistema-tuss.git
 cd sistema-tuss
 ```
 
-### 2. Iniciar o Ambiente de Desenvolvimento
+---
+
+### 🐳 Opção 1: Execução via Docker Compose (Recomendado) <a id="opcao-1-docker"></a>
+
+Esta é a forma mais simples e garantida de rodar o projeto em qualquer sistema operacional (Windows, Linux ou macOS).
+
+#### Pré-requisitos
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) ou Docker Engine com plugin Compose instalado e em execução.
+- [Node.js](https://nodejs.org/) (opcional, apenas se desejar usar os atalhos `npm run`).
+
+#### Passo a Passo:
+
+**1. Configurar o arquivo de variáveis de ambiente:**
 ```bash
-# Inicia todos os serviços (Banco + Backend + Frontend) com Hot-Reload:
+# No Linux / macOS:
+cp .env.example .env
+
+# No Windows (PowerShell):
+Copy-Item .env.example .env
+```
+
+**2. Subir os serviços de desenvolvimento (Hot-Reload ativado):**
+```bash
+# Usando atalho npm na raiz:
 npm run dev
 
 # Ou diretamente pelo Docker Compose:
 docker compose up -d
 ```
 
-- 🌐 **Frontend (Vite):** [http://localhost:5173](http://localhost:5173)
-- 🔌 **API REST (Express):** [http://localhost:3000/api](http://localhost:3000/api)
-- 🗄️ **PostgreSQL:** `localhost:5432` (`user: postgres`, `pass: postgres`, `db: tuss_db`)
-
-> 💡 **Auto-Seed Inteligente:** Na primeira inicialização, o backend detecta automaticamente se o banco está vazio e popula todos os 1,44 milhão de registros em segundo plano.
-
----
-
-### 3. Iniciar o Ambiente de Produção
+**3. Acompanhar a inicialização e o Auto-Seed:**
 ```bash
-npm run prod:build
+npm run dev:logs
+# Ou apenas os logs do backend:
+npm run dev:backend
 ```
+
+> 💡 **Auto-Seed Inteligente:** Na primeira inicialização, o backend detecta se o banco de dados está vazio. Caso esteja, ele inicia a importação e tokenização automática dos **1,44 milhão de registros** a partir dos arquivos JSON da pasta `fonte/` em background, sem travar as rotas da API.
+
+#### URLs de Acesso:
+- 🌐 **Frontend (React + Vite):** [http://localhost:5173](http://localhost:5173)
+- 🔌 **API REST (Express):** [http://localhost:3000/api](http://localhost:3000/api)
+- 🗄️ **PostgreSQL:** `localhost:5432` (`usuário: postgres`, `senha: postgres`, `database: tuss_db`)
+
+#### Para encerrar os containers:
+```bash
+npm run dev:down
+# ou: docker compose down
+```
+
+---
+
+### ⚡ Opção 2: Execução Híbrida (Banco no Docker + Backend e Frontend Nativos) <a id="opcao-2-hibrida"></a>
+
+Ideal para desenvolvimento e depuração no VS Code com máxima agilidade, dispensando a instalação manual do PostgreSQL no seu sistema.
+
+#### Pré-requisitos
+- [Docker Desktop](https://www.docker.com/) rodando (para o container do banco).
+- [Node.js 18+](https://nodejs.org/) instalado na máquina.
+
+#### Passo a Passo:
+
+**1. Subir apenas o container do PostgreSQL:**
+```bash
+npm run local:db
+# Ou: docker compose up db -d
+```
+
+**2. Instalar as dependências do Backend e Frontend:**
+```bash
+npm run local:install
+# Ou individualmente:
+cd backend && npm install
+cd ../frontend && npm install
+```
+
+**3. Iniciar o Backend (Terminal 1):**
+```bash
+npm run local:backend
+# Ou: cd backend && npm run dev
+```
+> O backend conecta automaticamente no banco em `localhost:5432`, aplica as migrações (tabelas, triggers e extensões `unaccent` e `pg_trgm`) e inicia o Auto-Seed.
+
+**4. Iniciar o Frontend (Terminal 2):**
+```bash
+npm run local:frontend
+# Ou: cd frontend && npm run dev
+```
+
+**5. Acessar:** Abra [http://localhost:5173](http://localhost:5173) no navegador.
+
+---
+
+### 💻 Opção 3: Execução 100% Nativa na Máquina (Sem Docker) <a id="opcao-3-nativa"></a>
+
+Para rodar todo o ecossistema diretamente no sistema operacional da sua máquina.
+
+#### Pré-requisitos
+- [Node.js 18+](https://nodejs.org/)
+- [PostgreSQL 16+](https://www.postgresql.org/download/) instalado e rodando como serviço local.
+
+#### Passo a Passo:
+
+**1. Criar o Banco de Dados no PostgreSQL:**
+Acesse o terminal do PostgreSQL (`psql`) ou ferramenta gráfica (pgAdmin / DBeaver) e crie a base de dados:
+```sql
+CREATE DATABASE tuss_db;
+```
+*(Não se preocupe com tabelas ou extensões: o script `initDb()` do backend cria as extensões `unaccent` e `pg_trgm`, triggers e índices automaticamente na primeira conexão!)*
+
+**2. Configurar o arquivo `.env` do Backend:**
+Copie o modelo de ambiente dentro da pasta `backend`:
+```bash
+# No Linux / macOS:
+cp backend/.env.example backend/.env
+
+# No Windows (PowerShell):
+Copy-Item backend/.env.example backend/.env
+```
+Abra o arquivo `backend/.env` e configure sua string de conexão com seu usuário e senha locais do PostgreSQL:
+```env
+DATABASE_URL=postgres://seu_usuario:sua_senha@localhost:5432/tuss_db
+PORT=3000
+NODE_ENV=development
+```
+
+**3. Instalar dependências e iniciar o Backend:**
+```bash
+cd backend
+npm install
+npm run dev
+```
+Você verá nos logs:
+```text
+✅ [Config] Estrutura do banco, tabelas de controle e índices GIN/Trigram verificados com sucesso.
+🌱 [Server] Banco vazio detectado. Iniciando Auto-Seed de todos os arquivos TUSS em background...
+🚀 [Server] Backend MVC rodando na porta 3000 [Modo: development]
+```
+
+*(Opcional: Caso queira forçar a sincronização manual dos dados via CLI: `npm run seed` dentro de `backend/`)*
+
+**4. Instalar dependências e iniciar o Frontend:**
+Abra um **segundo terminal** na raiz do projeto:
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+**5. Acessar a Aplicação:**
+Abra o navegador em [http://localhost:5173](http://localhost:5173). O Vite realiza proxy reverso automático de todas as chamadas `/api` para a porta 3000 local!
+
+---
+
+### 🚀 Opção 4: Ambiente de Produção Otimizado (Docker + Nginx)
+
+Para testar a versão final compilada com Nginx como proxy reverso e servidor estático de alta performance:
+
+```bash
+# Compila o frontend, empacota o backend de produção e sobe o Nginx na porta 80:
+npm run prod:build
+
+# Para visualizar os containers ativos:
+npm run prod:ps
+
+# Para parar a produção:
+npm run prod:down
+```
+
 - 🌐 **Aplicação em Produção (Nginx):** [http://localhost](http://localhost) (Porta 80)
-- 🔌 **Proxy da API:** `http://localhost/api`
+- 🔌 **Proxy da API:** [http://localhost/api](http://localhost/api)
 
 ---
 
-## 📜 Comandos Úteis (`package.json`)
+## 📜 Comandos Úteis (`package.json`) <a id="comandos-úteis-packagejson"></a><a id="comandos-uteis"></a>
 
-| Comando | O que faz |
+| Comando | Descrição |
 | :--- | :--- |
-| `npm run dev` | Inicia o ambiente de desenvolvimento com logs em tempo real |
-| `npm run dev:d` | Inicia o ambiente de desenvolvimento em background |
+| **Docker (Desenvolvimento)** | |
+| `npm run dev` | Inicia o ambiente completo no Docker com logs em tempo real |
+| `npm run dev:d` | Inicia o ambiente de desenvolvimento em background (modo detached) |
 | `npm run dev:build` | Reconstrói as imagens de desenvolvimento e sobe os containers |
-| `npm run dev:logs` | Exibe os logs de todos os containers ativos |
+| `npm run dev:logs` | Exibe e acompanha os logs unificados de todos os containers |
+| `npm run dev:backend` | Exibe os logs em tempo real apenas do container backend |
+| `npm run dev:frontend` | Exibe os logs em tempo real apenas do container frontend |
 | `npm run dev:down` | Encerra e remove os containers de desenvolvimento |
-| `npm run seed` | Executa a sincronização incremental dos arquivos de dados |
+| `npm run seed` | Executa a sincronização incremental dos arquivos de dados via container |
+| `npm run seed:force` | Força a reimportação completa de todos os arquivos ignorando hash MD5 |
+| **Execução Local / Nativa** | |
+| `npm run local:install` | Instala as dependências do `backend` e `frontend` na máquina |
+| `npm run local:db` | Inicia apenas o container do PostgreSQL em background |
+| `npm run local:backend` | Inicia o backend localmente na máquina com nodemon (porta 3000) |
+| `npm run local:frontend` | Inicia o frontend localmente na máquina com Vite HMR (porta 5173) |
+| `npm run local:seed` | Executa o script de ingestão/seed nativamente na máquina |
+| **Docker (Produção & Limpeza)** | |
 | `npm run prod` | Inicia o ambiente de produção em background |
-| `npm run prod:build` | Compila o frontend, constrói as imagens de produção e inicia o Nginx |
-| `npm run prod:down` | Encerra os containers de produção |
-| `npm run clean:all` | Limpa completamente containers, volumes e redes do Docker |
+| `npm run prod:build` | Compila o frontend, constrói imagens de produção e sobe o Nginx |
+| `npm run prod:down` | Encerra os containers do ambiente de produção |
+| `npm run clean:all` | Remove completamente todos os containers, redes e volumes criados |
 
 ---
 
-## 📡 Documentação dos Endpoints da API
+## 📡 Documentação dos Endpoints da API <a id="documentação-dos-endpoints-da-api"></a><a id="documentacao-da-api"></a>
 
 ### `GET /api/tuss`
 Consulta paginada com busca textual tokenizada e ranqueamento por relevância.
@@ -347,7 +512,7 @@ Retorna todos os detalhes cadastrais e metadados de um código TUSS específico.
 
 ---
 
-## ⚡ Benchmarks de Performance
+## ⚡ Benchmarks de Performance <a id="benchmarks-de-performance"></a><a id="benchmarks"></a>
 
 | Cenário de Teste / Consulta | Volume da Base | Estratégia Técnica | Tempo Médio de Resposta |
 | :--- | :---: | :--- | :---: |
@@ -360,7 +525,7 @@ Retorna todos os detalhes cadastrais e metadados de um código TUSS específico.
 
 ---
 
-## 📂 Estrutura de Diretórios
+## 📂 Estrutura de Diretórios <a id="estrutura-de-diretórios"></a><a id="estrutura"></a>
 
 ```text
 sistema-tuss/
@@ -384,6 +549,7 @@ sistema-tuss/
 │   │   ├── app.js               # Configuração da aplicação Express
 │   │   ├── server.js            # Inicializador HTTP e checagem de auto-seed
 │   │   └── index.js             # Ponto de entrada compatível
+│   ├── .env.example             # Modelo de variáveis de ambiente para backend local
 │   ├── Dockerfile               # Multi-stage build (dev / prod)
 │   └── package.json
 ├── frontend/
@@ -398,18 +564,20 @@ sistema-tuss/
 │   ├── nginx/
 │   │   └── default.conf      # Configuração Nginx com Proxy /api para produção
 │   ├── Dockerfile            # Multi-stage build (dev Vite / prod Nginx)
-│   ├── vite.config.js        # Configuração do Vite com @tailwindcss/vite
+│   ├── vite.config.js        # Configuração do Vite com proxy e Tailwind v4
 │   └── package.json
 ├── fonte/                    # Bases de dados oficiais (TUSS-19, TUSS-20, TUSS-24, TUSS-18)
 ├── docker-compose.yml        # Orquestração do ambiente de Desenvolvimento
 ├── docker-compose.prod.yml   # Orquestração do ambiente de Produção
-├── package.json              # Scripts npm raiz para controle do Docker
+├── .env.example              # Modelo de variáveis de ambiente raiz
+├── package.json              # Scripts npm raiz para Docker e execução nativa
+├── LICENSE                   # Licença de uso MIT
 └── README.md                 # Documentação completa do projeto
 ```
 
 ---
 
-## 👤 Autor
+## 👤 Autor <a id="autor"></a>
 
 Desenvolvido por **Jadson Cerqueira**  
 - LinkedIn: [linkedin.com/in/seu-perfil](https://www.linkedin.com)
@@ -417,6 +585,6 @@ Desenvolvido por **Jadson Cerqueira**
 
 ---
 
-## 📄 Licença
+## 📄 Licença <a id="licença"></a><a id="licenca"></a>
 
 Este projeto está sob a licença [MIT](LICENSE).
