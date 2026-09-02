@@ -237,11 +237,11 @@ Você pode rodar o Sistema TUSS na sua máquina de três maneiras diferentes:
 
 ### 📥 1. Clonar o Repositório
 
-Em qualquer uma das opções, comece clonando o repositório e entrando na pasta:
+Em qualquer uma das opções, comece clonando o repositório e entrando na pasta do projeto:
 
 ```bash
-git clone https://github.com/seu-usuario/sistema-tuss.git
-cd sistema-tuss
+git clone https://github.com/charlesfgarcia/tabelas-ans.git
+cd tabelas-ans
 ```
 
 ---
@@ -277,27 +277,41 @@ npm run dev
 docker compose up -d
 ```
 
-**3. Acompanhar a inicialização e o Auto-Seed:**
+**3. Acompanhar a inicialização e a carga dos dados (Auto-Seed):**
 
 ```bash
+# Acompanhar os logs de todos os containers:
 npm run dev:logs
-# Ou apenas os logs do backend:
+
+# Ou acompanhar apenas os logs do backend em tempo real:
 npm run dev:backend
 ```
 
-> 💡 **Auto-Seed Inteligente:** Na primeira inicialização, o backend detecta se o banco de dados está vazio. Caso esteja, ele inicia a importação e tokenização automática dos **1,44 milhão de registros** a partir dos arquivos JSON da pasta `fonte/` em background, sem travar as rotas da API.
+> ⏳ **Atenção — Primeira Execução (Carga Inicial do Banco):**  
+> Quando você executa o projeto pela **primeira vez**, o processo de inicialização é **mais demorado (pode levar alguns minutos)**.  
+> Isso acontece porque o backend detecta automaticamente que o banco de dados está vazio e dispara o **Auto-Seed**, povoando e indexando quase **1,5 milhão de registros (1.442.892 linhas)** a partir dos arquivos oficiais da pasta `fonte/`. O banco processa os lotes, gera os vetores fonéticos de busca textual (*Full-Text Search* em português com `unaccent`), monta os índices GIN invertidos e trigramas para garantir que as futuras buscas fiquem instantâneas.  
+>  
+> 💡 **Isso ocorre apenas uma vez:** Nas próximas vezes em que subir os containers, a inicialização será praticamente instantânea (em menos de 2 segundos), pois os dados ficam gravados no volume persistente do Docker (`db_data_dev`) e o cache de totais já estará pré-aquecido na memória.
 
-#### URLs de Acesso:
+---
 
-- 🌐 **Frontend (React + Vite):** [http://localhost:5173](http://localhost:5173)
-- 🔌 **API REST (Express):** [http://localhost:3000/api](http://localhost:3000/api)
-- 🗄️ **PostgreSQL:** `localhost:5432` (`usuário: postgres`, `senha: postgres`, `database: tuss_db`)
+#### 📍 Onde o projeto vai estar rodando após os containers subirem:
+
+Assim que o comando de inicialização for concluído e os containers estiverem ativos, você poderá acessar o projeto nos seguintes endereços locais:
+
+| Serviço | O que é | URL de Acesso Local |
+| :--- | :--- | :--- |
+| 🖥️ **Frontend Web (Interface SPA)** | Aplicação React 18 + Vite + Tailwind v4 (Cards de categorias, busca por Enter e modal) | [http://localhost:5173](http://localhost:5173) |
+| 🔌 **API REST (Backend Express)** | Ponto de entrada da API e documentação de status | [http://localhost:3000/api](http://localhost:3000/api) |
+| 📊 **Estatísticas da Base** | Endpoint JSON com as contagens consolidadas por tabela TUSS | [http://localhost:3000/api/stats](http://localhost:3000/api/stats) |
+| 🗄️ **Banco PostgreSQL 16** | Conexão direta com o banco relacional e motor FTS | `localhost:5432`<br>`(user: postgres \| senha: postgres \| db: tuss_db)` |
 
 #### Para encerrar os containers:
 
 ```bash
 npm run dev:down
-# ou: docker compose down
+# ou diretamente:
+docker compose down
 ```
 
 ---
