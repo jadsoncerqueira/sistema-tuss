@@ -1,6 +1,10 @@
+import fs from 'fs';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
+
+const isDocker = fs.existsSync('/.dockerenv');
+const defaultTarget = isDocker ? 'http://backend:3000' : 'http://localhost:3000';
 
 export default defineConfig({
   plugins: [
@@ -16,7 +20,7 @@ export default defineConfig({
     },
     proxy: {
       '/api': {
-        target: process.env.VITE_API_URL || 'http://localhost:3000',
+        target: process.env.VITE_API_URL || defaultTarget,
         changeOrigin: true
       }
     }
