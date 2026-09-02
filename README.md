@@ -578,6 +578,8 @@ Retorna todos os detalhes cadastrais e metadados de um código TUSS específico.
 
 ## ⚡ Benchmarks de Performance <a id="benchmarks-de-performance"></a><a id="benchmarks"></a>
 
+### 1. Latência por Tipo de Consulta (Requisições Individuais)
+
 | Cenário de Teste / Consulta               |    Volume da Base     | Estratégia Técnica                               | Tempo Médio de Resposta |
 | :---------------------------------------- | :-------------------: | :----------------------------------------------- | :---------------------: |
 | **Troca de Categoria (TUSS-19)**          | 1,38 milhão de linhas | Índice Composto `(source, id)` + Cache de Totais |        **~8ms**         |
@@ -586,6 +588,32 @@ Retorna todos os detalhes cadastrais e metadados de um código TUSS específico.
 | **Busca Multitermo** (`fresa tungstenio`) | 1,44 milhão de linhas | FTS GIN (`fresa:* & tungstenio:*`)               |        **~25ms**        |
 | **Busca Ampla com Raiz** (`ultrasson`)    | 1,44 milhão de linhas | FTS Stemming Português (`ultrasson:*`)           |        **~85ms**        |
 | **Busca Curta de Alta Frequência** (`us`) | 1,44 milhão de linhas | FTS GIN + CTE Candidate Pool (`LIMIT 2000`)      |       **~186ms**        |
+
+### 2. 🧪 Teste de Estresse & Carga Concorrente (`npm run test:stress`)
+
+O projeto inclui uma ferramenta automatizada em [`scripts/stressTest.js`](scripts/stressTest.js) para testes de carga realistas. O script simula múltiplos usuários simultâneos disparando requisições sem pausas sobre **21 cenários variados** (cache, filtros compostos, FTS multitermo e pior caso com termos curtos).
+
+#### Como executar:
+
+```bash
+# Execução padrão (10 conexões simultâneas por 10 segundos):
+npm run test:stress
+
+# Ou personalizando o tempo e a concorrência diretamente:
+# Sintaxe: node scripts/stressTest.js <DURAÇÃO_SEGUNDOS> <CONCORRÊNCIA>
+node scripts/stressTest.js 15 20
+```
+
+#### Resultados Reais Sob Carga Concorrente:
+
+| Métrica Avaliada              | Carga Moderada (5 Conexões Simultâneas) | Carga Intensa (20 Conexões Simultâneas) |
+| :---------------------------- | :-------------------------------------: | :-------------------------------------: |
+| **Total de Requisições**      |                 **114**                 |                 **219**                 |
+| **Taxa de Sucesso (HTTP 200)** |              **100.0% (0 falhas)**      |              **100.0% (0 falhas)**      |
+| **Vazão Média (Throughput)**   |             **11.4 req/s**              |             **13.6 req/s**              |
+| **Latência Mediana (p50)**    |                **33 ms**                |               **352 ms**                |
+| **Latência Média**            |               **304 ms**                |               **1.408 ms**              |
+| **Estabilidade do Banco**     |   Sem saturação de memória ou CPU       |   Pool reciclado sem deadlock ou OOM    |
 
 ---
 
@@ -631,6 +659,8 @@ sistema-tuss/
 │   ├── vite.config.js        # Configuração do Vite com proxy e Tailwind v4
 │   └── package.json
 ├── fonte/                    # Bases de dados oficiais (TUSS-18, TUSS-19, TUSS-20, TUSS-22, TUSS-24)
+├── scripts/                  # Scripts de utilidade e testes de carga
+│   └── stressTest.js         # Teste de estresse com cenários realistas e métricas p50/p95
 ├── docker-compose.yml        # Orquestração do ambiente de Desenvolvimento
 ├── docker-compose.prod.yml   # Orquestração do ambiente de Produção
 ├── .env.example              # Modelo de variáveis de ambiente raiz
