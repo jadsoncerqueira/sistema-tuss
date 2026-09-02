@@ -3,7 +3,6 @@ import {
   Activity,
   Database,
   Search,
-  RefreshCw,
   CheckCircle2,
   AlertCircle,
   Calendar,
@@ -47,7 +46,6 @@ export default function App() {
   const [searchMeta, setSearchMeta] = useState(null);
   const [selectedSource, setSelectedSource] = useState('all');
   const [loading, setLoading] = useState(true);
-  const [seeding, setSeeding] = useState(false);
   const [notification, setNotification] = useState(null);
   const [copiedId, setCopiedId] = useState(null);
   const [selectedItem, setSelectedItem] = useState(null);
@@ -140,30 +138,6 @@ export default function App() {
   const handleQuickFilter = (term) => {
     setSearch(term);
     fetchProcedures(1, term, selectedSource);
-  };
-
-  const handleSeed = async () => {
-    setSeeding(true);
-    try {
-      const res = await fetch('/api/seed', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ force: true })
-      });
-
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.error || 'Falha ao processar sincronização');
-      }
-
-      showNotification(`🎉 ${data.count?.toLocaleString() || 'Mais de 1.4 milhão de'} registros sincronizados com sucesso!`, 'success');
-      await fetchProcedures(1, search, selectedSource);
-      await checkStatusAndStats();
-    } catch (err) {
-      showNotification('Erro ao sincronizar: ' + err.message, 'error');
-    } finally {
-      setSeeding(false);
-    }
   };
 
   const getSourceCount = (src) => {
@@ -284,21 +258,10 @@ export default function App() {
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="hidden md:flex items-center gap-2 bg-slate-100 px-3 py-1.5 rounded-full text-xs font-medium text-slate-700">
+            <div className="flex items-center gap-2 bg-slate-100 px-3 py-1.5 rounded-full text-xs font-medium text-slate-700">
               <span className={`inline-block h-2 w-2 rounded-full ${backendStatus?.message ? 'bg-emerald-500 animate-pulse' : 'bg-rose-500'}`} />
               {backendStatus?.message ? 'API Online' : 'API Offline'}
             </div>
-
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleSeed}
-              disabled={seeding}
-              className="gap-2 font-medium shadow-none hover:bg-slate-100"
-            >
-              <RefreshCw className={`h-4 w-4 ${seeding ? 'animate-spin text-primary' : 'text-slate-600'}`} />
-              <span>{seeding ? 'Sincronizando...' : 'Sincronizar Banco'}</span>
-            </Button>
           </div>
         </div>
       </header>
