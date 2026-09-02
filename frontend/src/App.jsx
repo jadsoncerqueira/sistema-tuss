@@ -21,6 +21,7 @@ import {
   Briefcase,
   Stethoscope,
   Pill,
+  Package,
   Zap,
   Github,
   Linkedin,
