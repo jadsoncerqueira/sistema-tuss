@@ -113,7 +113,7 @@ O backend foi separado em camadas com responsabilidades bem definidas, facilitan
 - **`models/tussModel.js`**: Isola o acesso a dados, consultas com CTEs de ranqueamento e cache em memória.
 - **`controllers/tussController.js`**: Valida parâmetros de requisição, calcula o tempo de resposta em milissegundos e formata a resposta JSON.
 - **`routes/tussRoutes.js`**: Mapeamento limpo das rotas RESTful.
-- **`services/`**: Concentra regras de negócio pesadas — construção de `tsquery` (`ftsService.js`), importação de arquivos com hash MD5 (`seedService.js`) e reindexação sob demanda (`optimizeService.js`).
+- **`services/`**: Concentra regras de negócio pesadas, como construção de `tsquery` (`ftsService.js`), importação de arquivos com hash MD5 (`seedService.js`) e reindexação sob demanda (`optimizeService.js`).
 - **`middlewares/errorHandler.js`**: Tratamento robusto de erros e rotas inexistentes sem expor stack traces sensíveis.
 
 ### 2. ⚡ Troca Instantânea de Categorias (< 10ms)
@@ -123,8 +123,8 @@ O backend foi separado em camadas com responsabilidades bem definidas, facilitan
 ### 3. 🧠 Tokenização e Full-Text Search com Pesos Hierárquicos
 - **`search_vector tsvector`**: Vetor textual gerado com o dicionário linguístico em português e normalizado pela função `immutable_unaccent` para ignorar acentos e maiúsculas/minúsculas.
 - **Pesos de Relevância Diferenciados**:
-  - 🥇 **Peso A:** `codigo_tuss` — busca exata ou prefixo do código numérico.
-  - 🥈 **Peso B:** `display_name` — descrição oficial do procedimento ou medicamento.
+  - 🥇 **Peso A:** `codigo_tuss`: busca exata ou prefixo do código numérico.
+  - 🥈 **Peso B:** `display_name`: descrição oficial do procedimento ou medicamento.
   - 🥉 **Peso C:** `fabricante` e `modelo` em metadados JSONB.
 - **Trigger de Auto-Tokenização (`trg_tuss_search_update`)**: Toda inserção ou atualização no banco gera e atualiza os vetores de busca automaticamente.
 

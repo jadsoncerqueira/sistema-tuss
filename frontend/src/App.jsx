@@ -556,7 +556,7 @@ export default function App() {
                       <TableCell className="text-xs text-slate-600 whitespace-nowrap">
                         <div className="flex items-center gap-1.5">
                           <Calendar className="h-3.5 w-3.5 text-slate-400" />
-                          <span>{item.inicio_vigencia || '—'}</span>
+                          <span>{item.inicio_vigencia || '-'}</span>
                         </div>
                       </TableCell>
                       <TableCell className="text-xs text-slate-600 whitespace-nowrap">
@@ -664,7 +664,7 @@ export default function App() {
                 </div>
                 <div className="bg-slate-50 p-3.5 rounded-lg border border-slate-200/80">
                   <span className="text-xs font-semibold text-slate-500 block uppercase tracking-wider">Fim da Vigência</span>
-                  <span className="font-medium text-slate-800 mt-1 block">{selectedItem.fim_vigencia || '— (Vigente)'}</span>
+                  <span className="font-medium text-slate-800 mt-1 block">{selectedItem.fim_vigencia || 'Em vigor (Vigente)'}</span>
                 </div>
               </div>
 
