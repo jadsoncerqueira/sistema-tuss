@@ -240,8 +240,13 @@ Você pode rodar o Sistema TUSS na sua máquina de três maneiras diferentes:
 Em qualquer uma das opções, comece clonando o repositório e entrando na pasta do projeto:
 
 ```bash
-git clone https://github.com/charlesfgarcia/tabelas-ans.git
-cd tabelas-ans
+# Via SSH (recomendado):
+git clone git@github.com:jadsoncerqueira/sistema-tuss.git
+cd sistema-tuss
+
+# Ou via HTTPS:
+git clone https://github.com/jadsoncerqueira/sistema-tuss.git
+cd sistema-tuss
 ```
 
 ---
