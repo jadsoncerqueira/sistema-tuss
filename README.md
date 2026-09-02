@@ -12,7 +12,7 @@
 ![Nginx](https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 
-**Uma plataforma Full Stack escalável projetada para ingestão, tokenização e busca instantânea sobre mais de 1,44 milhão de registros da Terminologia Unificada da Saúde Suplementar (TUSS / ANS).**
+**Uma plataforma Full Stack escalável projetada para ingestão, tokenização e busca de alta performance sobre 1,44 milhão de registros da Terminologia Unificada da Saúde Suplementar (TUSS / ANS).**
 
 [Apresentação](#apresentação) • [O Desafio de Engenharia](#o-desafio-de-engenharia) • [Arquitetura do Sistema](#arquitetura-do-sistema) • [Decisões Técnicas](#decisões-técnicas--destaques-de-engenharia) • [Estudo de Performance](#estudo-de-caso-de-otimização-de-397s-para-180ms) • [Tecnologias](#tecnologias-utilizadas) • [Como Executar na Máquina](#como-executar-o-projeto) • [Comandos Úteis](#comandos-úteis-packagejson) • [Documentação da API](#documentação-dos-endpoints-da-api) • [Benchmarks](#benchmarks-de-performance) • [Estrutura](#estrutura-de-diretórios)
 
@@ -22,12 +22,11 @@
 
 ## 📌 Apresentação <a id="apresentação"></a><a id="apresentacao"></a>
 
-No ecossistema de saúde suplementar brasileiro, a **Terminologia Unificada da Saúde Suplementar (TUSS)**, padronizada pela **ANS (Agência Nacional de Saúde Suplementar)**, é a espinha dorsal de faturamento, auditoria médica, prescrição e autorização de guias entre operadoras, hospitais, laboratórios e clínicas.
+No ecossistema de saúde suplementar brasileiro, a **Terminologia Unificada da Saúde Suplementar (TUSS)**, padronizada pela **ANS (Agência Nacional de Saúde Suplementar)**, reúne catálogos extensos de medicamentos, diárias hospitalares, procedimentos e mais de 1,3 milhão de materiais e próteses (OPME).
 
-Este projeto foi desenvolvido por **Jadson Cerqueira** como parte da aplicação e consolidação prática dos conhecimentos adquiridos no curso de **Engenharia de Software**. O objetivo principal foi enfrentar um desafio real de engenharia: **como modelar, otimizar e servir uma base volumosa com quase 1,5 milhão de registros** garantindo consultas muito rápidas em frações de segundo e eliminando gargalos de I/O e processamento no banco relacional, mesmo com múltiplos filtros simultâneos.
+Este projeto foi desenvolvido por **Jadson Cerqueira** como consolidação prática do curso de **Engenharia de Software**, abordando um desafio comum em sistemas com grandes volumes: **como modelar, otimizar e servir uma base de quase 1,5 milhão de registros sem gargalos de CPU e I/O**, garantindo respostas em frações de segundo. 
 
-> 🤖 **Engenharia Assistida por Inteligência Artificial (AI-Assisted Development):**  
-> A Inteligência Artificial foi utilizada ativamente ao longo de todo o ciclo de desenvolvimento como aceleradora de produtividade e ferramenta de *pair programming* (apoio no scaffolding, testes de carga, refinamento de expressões de busca e documentação). Todas as decisões arquiteturais (padrão MVC, isolamento de camadas), modelagem relacional, estratégias de indexação invertida GIN no PostgreSQL, planos de execução e orquestração em Docker foram projetadas, implementadas e homologadas pelo autor.
+Todo o desenvolvimento adotou práticas modernas de **engenharia assistida por IA**, utilizando inteligência artificial como parceira de produtividade (*pair programming*), mantendo a governança arquitetural, a modelagem relacional e os testes sob controle do desenvolvedor.
 
 ### 📊 Base de Dados Unificada
 
@@ -302,9 +301,9 @@ npm run dev:backend
 
 > ⏳ **Atenção — Primeira Execução (Carga Inicial do Banco):**  
 > Quando você executa o projeto pela **primeira vez**, o processo de inicialização é **mais demorado (pode levar alguns minutos)**.  
-> Isso acontece porque o backend detecta automaticamente que o banco de dados está vazio e dispara o **Auto-Seed**, povoando e indexando quase **1,5 milhão de registros (1.442.892 linhas)** a partir dos arquivos oficiais da pasta `fonte/`. O banco processa os lotes, gera os vetores fonéticos de busca textual (*Full-Text Search* em português com `unaccent`), monta os índices GIN invertidos e trigramas para garantir que as futuras buscas fiquem instantâneas.  
+> Isso acontece porque o backend detecta automaticamente que o banco de dados está vazio e dispara o **Auto-Seed**, povoando e indexando quase **1,5 milhão de registros (1.442.892 linhas)** a partir dos arquivos oficiais da pasta `fonte/`. O banco processa os lotes, gera os vetores fonéticos de busca textual (*Full-Text Search* em português com `unaccent`), monta os índices GIN invertidos e trigramas para garantir que as buscas respondam em frações de segundo.  
 >  
-> 💡 **Isso ocorre apenas uma vez:** Nas próximas vezes em que subir os containers, a inicialização será praticamente instantânea (em menos de 2 segundos), pois os dados ficam gravados no volume persistente do Docker (`db_data_dev`) e o cache de totais já estará pré-aquecido na memória.
+> 💡 **Isso ocorre apenas uma vez:** Nas próximas vezes em que subir os containers, a inicialização será imediata (em menos de 2 segundos), pois os dados ficam gravados no volume persistente do Docker (`db_data_dev`) e o cache de totais já estará pré-aquecido na memória.
 
 ---
 
