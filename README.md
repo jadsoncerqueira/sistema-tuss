@@ -129,8 +129,8 @@ O backend foi separado em camadas com responsabilidades bem definidas, facilitan
 - **Trigger de Auto-Tokenização (`trg_tuss_search_update`)**: Toda inserção ou atualização no banco gera e atualiza os vetores de busca automaticamente.
 
 ### 4. 🎯 Algoritmo de Relevância Ponderada
-O endpoint de busca pontua cada registro para garantir que o resultado mais intuitivo apareça no topo:
-$$\text{Relevância} = \text{Código Exato (100 pts)} + \text{Prefixo de Código (50 pts)} + \text{Início da Descrição (30 pts)} + (\text{ts\_rank} \times 10)$$
+> 📐 **Cálculo da Pontuação de Relevância:**  
+> `Score = Bônus de Código Exato (100 pts) + Prefixo de Código (50 pts) + Início da Descrição (30 pts) + (ts_rank × 10)`
 
 ```sql
 WITH candidates AS (
