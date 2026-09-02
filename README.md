@@ -24,31 +24,31 @@
 
 No ecossistema de saúde suplementar brasileiro, a **Terminologia Unificada da Saúde Suplementar (TUSS)**, padronizada pela **ANS (Agência Nacional de Saúde Suplementar)**, é a espinha dorsal de faturamento, auditoria médica, prescrição e autorização de guias entre operadoras, hospitais, laboratórios e clínicas.
 
-Na prática diária, profissionais de saúde e faturistas precisam consultar catálogos gigantescos contendo centenas de milhares de materiais médicos (OPME), medicamentos comerciais, diárias hospitalares e códigos de procedimentos. 
+Na prática diária, profissionais de saúde e faturistas precisam consultar catálogos gigantescos contendo centenas de milhares de materiais médicos (OPME), medicamentos comerciais, diárias hospitalares e códigos de procedimentos.
 
 A maioria dos sistemas legados sofre com consultas lentas, buscas que travam em termos curtos ou falhas ao lidar com termos sem acento e sinônimos. Este projeto nasceu para resolver exatamente essa dor: **entregar uma experiência de busca instantânea, inteligente e confiável sobre 1,44 milhão de registros**, combinando engenharia de banco de dados no PostgreSQL com uma arquitetura moderna em Node.js e React.
 
 ### 📊 Base de Dados Unificada
 
-| Código | Tabela Normativa ANS | Total de Registros | Contexto & Metadados Estruturados |
-| :---: | :--- | :---: | :--- |
-| **Todas** | **Visão Geral Consolidada** | **1.442.892** | **Índices GIN + Trigram + Ranking Ponderado** |
-| **TUSS-18** | **Diárias, Taxas e Gases Medicinais** | **3.595** | Diárias de UTI, taxas de sala e gases medicinais |
-| **TUSS-19** | **Materiais, Órteses, Próteses e OPME** | **1.389.786** | Fabricante, Modelo, Registro ANVISA e Classe de Risco |
-| **TUSS-20** | **Medicamentos** | **43.376** | Apresentação comercial, forma farmacêutica e vigência |
-| **TUSS-22** | **Procedimentos e Eventos em Saúde** | **5.967** | Código de procedimento, Rol ANS e vigência |
-| **TUSS-24** | **CBO (Ocupação dos Prestadores)** | **168** | Especialidades médicas e categorias profissionais |
+|   Código    | Tabela Normativa ANS                    | Total de Registros | Contexto & Metadados Estruturados                     |
+| :---------: | :-------------------------------------- | :----------------: | :---------------------------------------------------- |
+|  **Todas**  | **Visão Geral Consolidada**             |   **1.442.892**    | **Índices GIN + Trigram + Ranking Ponderado**         |
+| **TUSS-18** | **Diárias, Taxas e Gases Medicinais**   |     **3.595**      | Diárias de UTI, taxas de sala e gases medicinais      |
+| **TUSS-19** | **Materiais, Órteses, Próteses e OPME** |   **1.389.786**    | Fabricante, Modelo, Registro ANVISA e Classe de Risco |
+| **TUSS-20** | **Medicamentos**                        |     **43.376**     | Apresentação comercial, forma farmacêutica e vigência |
+| **TUSS-22** | **Procedimentos e Eventos em Saúde**    |     **5.967**      | Código de procedimento, Rol ANS e vigência            |
+| **TUSS-24** | **CBO (Ocupação dos Prestadores)**      |      **168**       | Especialidades médicas e categorias profissionais     |
 
 ---
 
 ## 💡 O Desafio de Engenharia <a id="o-desafio-de-engenharia"></a>
 
-Consultar **1,44 milhão de linhas** com resposta em menos de 100 milissegundos não é trivial para um banco relacional tradicional quando utilizamos abordagens ingênuas como `ILIKE '%termo%'`. 
+Consultar **1,44 milhão de linhas** com resposta em menos de 100 milissegundos não é trivial para um banco relacional tradicional quando utilizamos abordagens ingênuas como `ILIKE '%termo%'`.
 
 Os três principais obstáculos superados foram:
 
 1. **Volume Desbalanceado:** A tabela TUSS-19 (OPME) concentra sozinha 1,38 milhão de itens, com campos textuais longos (especificações técnicas, modelos e nomes de fabricantes).
-2. **Cardinalidade de Siglas Médicas:** Termos como *"US"* (ultrassonografia), *"TC"* (tomografia) ou *"RX"* (raio-x) geram dezenas de milhares de ocorrências quando pesquisados por substring, travando queries e estourando memória.
+2. **Cardinalidade de Siglas Médicas:** Termos como _"US"_ (ultrassonografia), _"TC"_ (tomografia) ou _"RX"_ (raio-x) geram dezenas de milhares de ocorrências quando pesquisados por substring, travando queries e estourando memória.
 3. **Navegação Fluida:** O usuário deve alternar entre categorias em tempo real, sem que o cálculo de contagem de páginas gere gargalos perceptíveis.
 
 ---
@@ -58,49 +58,46 @@ Os três principais obstáculos superados foram:
 A solução foi desenhada seguindo o **Padrão MVC (Model-View-Controller)** no backend e uma **Single Page Application (SPA)** desacoplada no frontend, orquestrada por containers Docker para desenvolvimento e produção:
 
 ```mermaid
-flowchart TD
-    subgraph Client["🖥️ Frontend (React 18 + Vite + Tailwind v4 + Shadcn)"]
-        UI["Interface Limpa & Responsiva"]
-        Cards["Cards de Categorias com Navegação Instantânea"]
-        SearchInput["Busca Controlada (Enter / Botão Buscar)"]
-        TableComp["Tabela Paginada + Modal de Detalhes Técnicos"]
+graph TD
+    subgraph Client ["🖥️ Frontend (React 18 + Vite + Tailwind v4)"]
+        UI["Interface SPA"]
+        Cards["Filtro por Categorias"]
+        SearchInput["Busca Controlada (Enter / Botão)"]
+        TableComp["Tabela Paginada e Modal de Detalhes"]
     end
 
-    subgraph NginxProxy["🌐 Nginx (Reverse Proxy em Produção)"]
-        Proxy["Proxy Reverso & Servidor de Assets Estáticos"]
+    subgraph NginxProxy ["🌐 Nginx (Reverse Proxy em Produção)"]
+        Proxy["Proxy Reverso (/api)"]
     end
 
-    subgraph BackendMVC["⚙️ Backend REST API (Node.js + Express MVC)"]
-        Router["Rotas REST (/api/tuss, /api/stats, /api/seed)"]
-        Controller["TussController (Controle de Requisições & Respostas)"]
-        Model["TussModel (Queries Otimizadas, CTEs & Cache de Totais)"]
-        Services["Serviços Especializados (FTS, Ingestão MD5, Otimização)"]
-        Middlewares["Middlewares (Tratamento Global de Erros & 404)"]
+    subgraph BackendMVC ["⚙️ Backend REST API (Node.js + Express MVC)"]
+        Router["Rotas REST (/api/tuss, /api/stats)"]
+        Controller["TussController (Validação e Resposta)"]
+        Model["TussModel (Queries CTEs e Cache de Totais)"]
+        Services["Serviços (FTS, Ingestão MD5, Otimização)"]
     end
 
-    subgraph Database["🗄️ PostgreSQL 16 (Motor de Indexação)"]
-        TSV["search_vector (tsvector com pesos hierárquicos A, B, C)"]
-        GIN_FTS["idx_tuss_search_vector (GIN FTS Index)"]
-        GIN_TRGM["idx_tuss_trgm_name / code (Trigram GIN)"]
-        BTreeComp["idx_tuss_source_id (B-Tree Composto source + id)"]
-        Trigger["Trigger de Auto-Tokenização (trg_tuss_search_update)"]
-        Unaccent["Função immutable_unaccent (Normalização Fonética)"]
+    subgraph Database ["🗄️ PostgreSQL 16 (Motor de Indexação)"]
+        Table["Tabela tuss_procedures (1.44M registros)"]
+        Trigger["Trigger trg_tuss_search_update"]
+        Unaccent["Função immutable_unaccent"]
+        TSV["search_vector (tsvector ponderado A, B, C)"]
+        Indexes["Índices GIN (FTS + Trigram) e B-Tree Composto"]
     end
 
     UI --> Cards
     Cards --> SearchInput
+    SearchInput --> TableComp
     SearchInput --> Proxy
     Proxy --> Router
     Router --> Controller
     Controller --> Services
     Controller --> Model
-    Model --> Database
-    Database --> Unaccent
-    Database --> GIN_FTS
-    Database --> GIN_TRGM
-    Database --> BTreeComp
-    Database --> TSV
-    Trigger --> TSV
+    Model --> Table
+    Table --> Trigger
+    Trigger --> Unaccent
+    Unaccent --> TSV
+    Table --> Indexes
 ```
 
 ---
@@ -108,7 +105,9 @@ flowchart TD
 ## 🚀 Decisões Técnicas & Destaques de Engenharia <a id="decisoes-tecnicas"></a><a id="decisões-técnicas--destaques-de-engenharia"></a>
 
 ### 1. 🏛️ Arquitetura MVC Modular e Limpa
+
 O backend foi separado em camadas com responsabilidades bem definidas, facilitando testes, manutenção e escalabilidade:
+
 - **`config/db.js`**: Gerencia o Pool de conexões do PostgreSQL e aplica migrações idempotentes (criação automática de extensões, tabelas, triggers e índices).
 - **`models/tussModel.js`**: Isola o acesso a dados, consultas com CTEs de ranqueamento e cache em memória.
 - **`controllers/tussController.js`**: Valida parâmetros de requisição, calcula o tempo de resposta em milissegundos e formata a resposta JSON.
@@ -117,10 +116,12 @@ O backend foi separado em camadas com responsabilidades bem definidas, facilitan
 - **`middlewares/errorHandler.js`**: Tratamento robusto de erros e rotas inexistentes sem expor stack traces sensíveis.
 
 ### 2. ⚡ Troca Instantânea de Categorias (< 10ms)
-- **Índice B-Tree Composto (`idx_tuss_source_id`)**: Ao filtrar por categoria com ordenação por ID, o PostgreSQL faz um *Index Scan* direto no índice composto `(source, id ASC)`, eliminando a necessidade de varrer a tabela no disco.
+
+- **Índice B-Tree Composto (`idx_tuss_source_id`)**: Ao filtrar por categoria com ordenação por ID, o PostgreSQL faz um _Index Scan_ direto no índice composto `(source, id ASC)`, eliminando a necessidade de varrer a tabela no disco.
 - **Cache de Contagem em Memória (`countCache`)**: Contar 1,38 milhão de linhas a cada clique para calcular a paginação custava ~1,5s no PostgreSQL. Com o cache em memória pré-aquecido na inicialização do servidor, a paginação padrão responde em **0 ms**.
 
 ### 3. 🧠 Tokenização e Full-Text Search com Pesos Hierárquicos
+
 - **`search_vector tsvector`**: Vetor textual gerado com o dicionário linguístico em português e normalizado pela função `immutable_unaccent` para ignorar acentos e maiúsculas/minúsculas.
 - **Pesos de Relevância Diferenciados**:
   - 🥇 **Peso A:** `codigo_tuss`: busca exata ou prefixo do código numérico.
@@ -129,12 +130,13 @@ O backend foi separado em camadas com responsabilidades bem definidas, facilitan
 - **Trigger de Auto-Tokenização (`trg_tuss_search_update`)**: Toda inserção ou atualização no banco gera e atualiza os vetores de busca automaticamente.
 
 ### 4. 🎯 Algoritmo de Relevância Ponderada
+
 > 📐 **Cálculo da Pontuação de Relevância:**  
 > `Score = Bônus de Código Exato (100 pts) + Prefixo de Código (50 pts) + Início da Descrição (30 pts) + (ts_rank × 10)`
 
 ```sql
 WITH candidates AS (
-  SELECT 
+  SELECT
     p.id, p.codigo_tuss, p.display_name, p.source,
     p.inicio_vigencia, p.fim_vigencia, p.extras, p.search_vector
   FROM tuss_procedures p
@@ -142,14 +144,14 @@ WITH candidates AS (
      OR p.codigo_tuss ILIKE $2 || '%'
   LIMIT 2000
 )
-SELECT 
+SELECT
   id, codigo_tuss, display_name, source, inicio_vigencia, fim_vigencia, extras,
   (
-    CASE 
+    CASE
       WHEN codigo_tuss = $2 THEN 100.0
       WHEN codigo_tuss ILIKE $2 || '%' THEN 50.0
       WHEN display_name ILIKE $2 || '%' THEN 30.0
-      ELSE 0.0 
+      ELSE 0.0
     END
     + COALESCE(ts_rank(search_vector, to_tsquery('portuguese', immutable_unaccent($1))), 0.0) * 10.0
   ) AS relevance_score
@@ -163,16 +165,19 @@ LIMIT $3 OFFSET $4;
 ## 🔥 Estudo de Caso de Otimização: De 39.7s para 180ms <a id="estudo-de-performance"></a><a id="estudo-de-caso-de-otimização-de-397s-para-180ms"></a>
 
 ### 🔴 O Cenário Crítico (39.720 ms)
+
 Ao pesquisar termos curtos e muito frequentes como `"us"`:
-- A query antiga com `ILIKE '%us%'` retornava mais de **500.000 matches** porque quase todas as palavras contêm "us" (*parafuso, uso, músculo, cirurgião*).
+
+- A query antiga com `ILIKE '%us%'` retornava mais de **500.000 matches** porque quase todas as palavras contêm "us" (_parafuso, uso, músculo, cirurgião_).
 - O banco tentava calcular similaridade trigram e ordenar 500 mil registros na memória antes de aplicar o `LIMIT 15`.
 - Resultado: A consulta demorava quase **40 segundos**.
 
 ### 🟢 A Solução Aplicada
+
 1. **FTS Puro Indexado:** Substituição completa de `ILIKE '%termo%'` pelo operador `search_vector @@ to_tsquery()`, que utiliza os índices GIN invertidos.
 2. **Tratamento Especial para Termos Curtos ($\le 2$ letras):** Converte siglas como `"us"` em `us | us:*`, evitando a expansão descontrolada de prefixos.
 3. **Pool de Candidatos via CTE (`LIMIT 2000`):** O cálculo de relevância ocorre apenas sobre os 2.000 melhores candidatos selecionados pelo índice.
-4. **Contagem Bounded (*Bounded Count*):** A contagem total para consultas de altíssima cardinalidade é limitada a 10.001 registros, garantindo resposta imediata sem sacrificar a paginação.
+4. **Contagem Bounded (_Bounded Count_):** A contagem total para consultas de altíssima cardinalidade é limitada a 10.001 registros, garantindo resposta imediata sem sacrificar a paginação.
 
 ```text
 Tempo de resposta para a busca "us" (1.44M registros):
@@ -183,11 +188,13 @@ Depois: [█] 186 ms (⚡ Redução de 99,5% no tempo de resposta)
 ---
 
 ### 5. 📦 Ingestão em Massa com Rastreamento Criptográfico MD5
+
 - **Tabela de Controle (`tuss_imported_files`)**: Cada arquivo JSON importado tem seu hash MD5 armazenado no banco.
 - **Seed Incremental Inteligente**: Ao rodar o seed novamente ou adicionar novos arquivos na pasta `fonte/`, o sistema compara os hashes e **processa apenas os arquivos novos ou alterados**, pulando os já importados em frações de segundo.
 - **Controle de Concorrência & Deduplicação**: Remoção de duplicatas em memória antes de cada lote de 1.000 itens (`INSERT ... ON CONFLICT`), evitando deadlocks e mantendo o consumo de RAM previsível.
 
 ### 6. 🐳 Ambientes Isolados com Docker Multi-Stage
+
 - **Desenvolvimento (`docker-compose.yml`)**:
   - Hot-Reloading no Backend com `nodemon -L` (polling configurado para perfeita compatibilidade com Windows e WSL2).
   - Hot-Module Replacement (HMR) no Frontend com Vite.
@@ -198,6 +205,7 @@ Depois: [█] 186 ms (⚡ Redução de 99,5% no tempo de resposta)
   - Execução segura com usuário sem privilégios de root (`node`).
 
 ### 7. 🎨 Interface Moderna e Experiência do Usuário (UX)
+
 - Componentes elegantes com **Tailwind CSS v4** e **Shadcn/UI**.
 - **Cards Seletores Interativos**: Permitem filtrar e visualizar as contagens de cada categoria em tempo real no topo da página.
 - **Busca por Demanda**: Disparada ao pressionar <kbd>Enter</kbd> ou clicar em **"Buscar"**, economizando requisições desnecessárias.
@@ -208,21 +216,22 @@ Depois: [█] 186 ms (⚡ Redução de 99,5% no tempo de resposta)
 
 ## 🛠 Tecnologias Utilizadas <a id="tecnologias-utilizadas"></a>
 
-| Camada | Tecnologias & Bibliotecas |
-| :--- | :--- |
-| **Backend (MVC)** | Node.js, Express.js, PostgreSQL Driver (`pg`), Dotenv, Cors, Crypto (MD5), Nodemon |
-| **Database** | PostgreSQL 16, `pg_trgm`, `unaccent`, GIN Indexes, TSVector Full-Text Search, B-Tree Compostos |
-| **Frontend** | React 18, Vite 5, Tailwind CSS v4, `@tailwindcss/vite`, Shadcn/UI, Lucide React, Clsx |
-| **DevOps & Infra** | Docker, Docker Compose, Multi-Stage Builds, Nginx Alpine, Linux Containers |
+| Camada             | Tecnologias & Bibliotecas                                                                      |
+| :----------------- | :--------------------------------------------------------------------------------------------- |
+| **Backend (MVC)**  | Node.js, Express.js, PostgreSQL Driver (`pg`), Dotenv, Cors, Crypto (MD5), Nodemon             |
+| **Database**       | PostgreSQL 16, `pg_trgm`, `unaccent`, GIN Indexes, TSVector Full-Text Search, B-Tree Compostos |
+| **Frontend**       | React 18, Vite 5, Tailwind CSS v4, `@tailwindcss/vite`, Shadcn/UI, Lucide React, Clsx          |
+| **DevOps & Infra** | Docker, Docker Compose, Multi-Stage Builds, Nginx Alpine, Linux Containers                     |
 
 ---
 
 ## 💻 Como Executar o Projeto <a id="como-executar-o-projeto"></a><a id="como-executar"></a><a id="como-rodar"></a>
 
 Você pode rodar o Sistema TUSS na sua máquina de três maneiras diferentes:
-1. [**Opção 1: Via Docker Compose (Recomendado)**](#opcao-1-docker) — Sobe Banco, Backend e Frontend isolados em containers com 1 comando.
-2. [**Opção 2: Modo Híbrido (Banco no Docker + Backend e Frontend Nativos)**](#opcao-2-hibrida) — Ideal para desenvolvimento rápido sem instalar PostgreSQL no SO.
-3. [**Opção 3: Modo 100% Nativo na Máquina (Sem Docker)**](#opcao-3-nativa) — Roda Node.js e PostgreSQL diretamente no sistema operacional.
+
+1. [**Opção 1: Via Docker Compose (Recomendado)**](#opcao-1-docker): Sobe Banco, Backend e Frontend isolados em containers com 1 comando.
+2. [**Opção 2: Modo Híbrido (Banco no Docker + Backend e Frontend Nativos)**](#opcao-2-hibrida): Ideal para desenvolvimento rápido sem instalar PostgreSQL no SO.
+3. [**Opção 3: Modo 100% Nativo na Máquina (Sem Docker)**](#opcao-3-nativa): Roda Node.js e PostgreSQL diretamente no sistema operacional.
 
 ---
 
@@ -242,12 +251,14 @@ cd sistema-tuss
 Esta é a forma mais simples e garantida de rodar o projeto em qualquer sistema operacional (Windows, Linux ou macOS).
 
 #### Pré-requisitos
+
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) ou Docker Engine com plugin Compose instalado e em execução.
 - [Node.js](https://nodejs.org/) (opcional, apenas se desejar usar os atalhos `npm run`).
 
 #### Passo a Passo:
 
 **1. Configurar o arquivo de variáveis de ambiente:**
+
 ```bash
 # No Linux / macOS:
 cp .env.example .env
@@ -257,6 +268,7 @@ Copy-Item .env.example .env
 ```
 
 **2. Subir os serviços de desenvolvimento (Hot-Reload ativado):**
+
 ```bash
 # Usando atalho npm na raiz:
 npm run dev
@@ -266,6 +278,7 @@ docker compose up -d
 ```
 
 **3. Acompanhar a inicialização e o Auto-Seed:**
+
 ```bash
 npm run dev:logs
 # Ou apenas os logs do backend:
@@ -275,11 +288,13 @@ npm run dev:backend
 > 💡 **Auto-Seed Inteligente:** Na primeira inicialização, o backend detecta se o banco de dados está vazio. Caso esteja, ele inicia a importação e tokenização automática dos **1,44 milhão de registros** a partir dos arquivos JSON da pasta `fonte/` em background, sem travar as rotas da API.
 
 #### URLs de Acesso:
+
 - 🌐 **Frontend (React + Vite):** [http://localhost:5173](http://localhost:5173)
 - 🔌 **API REST (Express):** [http://localhost:3000/api](http://localhost:3000/api)
 - 🗄️ **PostgreSQL:** `localhost:5432` (`usuário: postgres`, `senha: postgres`, `database: tuss_db`)
 
 #### Para encerrar os containers:
+
 ```bash
 npm run dev:down
 # ou: docker compose down
@@ -292,18 +307,21 @@ npm run dev:down
 Ideal para desenvolvimento e depuração no VS Code com máxima agilidade, dispensando a instalação manual do PostgreSQL no seu sistema.
 
 #### Pré-requisitos
+
 - [Docker Desktop](https://www.docker.com/) rodando (para o container do banco).
 - [Node.js 18+](https://nodejs.org/) instalado na máquina.
 
 #### Passo a Passo:
 
 **1. Subir apenas o container do PostgreSQL:**
+
 ```bash
 npm run local:db
 # Ou: docker compose up db -d
 ```
 
 **2. Instalar as dependências do Backend e Frontend:**
+
 ```bash
 npm run local:install
 # Ou individualmente:
@@ -312,13 +330,16 @@ cd ../frontend && npm install
 ```
 
 **3. Iniciar o Backend (Terminal 1):**
+
 ```bash
 npm run local:backend
 # Ou: cd backend && npm run dev
 ```
+
 > O backend conecta automaticamente no banco em `localhost:5432`, aplica as migrações (tabelas, triggers e extensões `unaccent` e `pg_trgm`) e inicia o Auto-Seed.
 
 **4. Iniciar o Frontend (Terminal 2):**
+
 ```bash
 npm run local:frontend
 # Ou: cd frontend && npm run dev
@@ -333,6 +354,7 @@ npm run local:frontend
 Para rodar todo o ecossistema diretamente no sistema operacional da sua máquina.
 
 #### Pré-requisitos
+
 - [Node.js 18+](https://nodejs.org/)
 - [PostgreSQL 16+](https://www.postgresql.org/download/) instalado e rodando como serviço local.
 
@@ -340,13 +362,16 @@ Para rodar todo o ecossistema diretamente no sistema operacional da sua máquina
 
 **1. Criar o Banco de Dados no PostgreSQL:**
 Acesse o terminal do PostgreSQL (`psql`) ou ferramenta gráfica (pgAdmin / DBeaver) e crie a base de dados:
+
 ```sql
 CREATE DATABASE tuss_db;
 ```
-*(Não se preocupe com tabelas ou extensões: o script `initDb()` do backend cria as extensões `unaccent` e `pg_trgm`, triggers e índices automaticamente na primeira conexão!)*
+
+_(Não se preocupe com tabelas ou extensões: o script `initDb()` do backend cria as extensões `unaccent` e `pg_trgm`, triggers e índices automaticamente na primeira conexão!)_
 
 **2. Configurar o arquivo `.env` do Backend:**
 Copie o modelo de ambiente dentro da pasta `backend`:
+
 ```bash
 # No Linux / macOS:
 cp backend/.env.example backend/.env
@@ -354,7 +379,9 @@ cp backend/.env.example backend/.env
 # No Windows (PowerShell):
 Copy-Item backend/.env.example backend/.env
 ```
+
 Abra o arquivo `backend/.env` e configure sua string de conexão com seu usuário e senha locais do PostgreSQL:
+
 ```env
 DATABASE_URL=postgres://seu_usuario:sua_senha@localhost:5432/tuss_db
 PORT=3000
@@ -362,22 +389,26 @@ NODE_ENV=development
 ```
 
 **3. Instalar dependências e iniciar o Backend:**
+
 ```bash
 cd backend
 npm install
 npm run dev
 ```
+
 Você verá nos logs:
+
 ```text
 ✅ [Config] Estrutura do banco, tabelas de controle e índices GIN/Trigram verificados com sucesso.
 🌱 [Server] Banco vazio detectado. Iniciando Auto-Seed de todos os arquivos TUSS em background...
 🚀 [Server] Backend MVC rodando na porta 3000 [Modo: development]
 ```
 
-*(Opcional: Caso queira forçar a sincronização manual dos dados via CLI: `npm run seed` dentro de `backend/`)*
+_(Opcional: Caso queira forçar a sincronização manual dos dados via CLI: `npm run seed` dentro de `backend/`)_
 
 **4. Instalar dependências e iniciar o Frontend:**
 Abra um **segundo terminal** na raiz do projeto:
+
 ```bash
 cd frontend
 npm install
@@ -411,46 +442,49 @@ npm run prod:down
 
 ## 📜 Comandos Úteis (`package.json`) <a id="comandos-úteis-packagejson"></a><a id="comandos-uteis"></a>
 
-| Comando | Descrição |
-| :--- | :--- |
-| **Docker (Desenvolvimento)** | |
-| `npm run dev` | Inicia o ambiente completo no Docker com logs em tempo real |
-| `npm run dev:d` | Inicia o ambiente de desenvolvimento em background (modo detached) |
-| `npm run dev:build` | Reconstrói as imagens de desenvolvimento e sobe os containers |
-| `npm run dev:logs` | Exibe e acompanha os logs unificados de todos os containers |
-| `npm run dev:backend` | Exibe os logs em tempo real apenas do container backend |
-| `npm run dev:frontend` | Exibe os logs em tempo real apenas do container frontend |
-| `npm run dev:down` | Encerra e remove os containers de desenvolvimento |
-| `npm run seed` | Executa a sincronização incremental dos arquivos de dados via container |
-| `npm run seed:force` | Força a reimportação completa de todos os arquivos ignorando hash MD5 |
-| **Execução Local / Nativa** | |
-| `npm run local:install` | Instala as dependências do `backend` e `frontend` na máquina |
-| `npm run local:db` | Inicia apenas o container do PostgreSQL em background |
-| `npm run local:backend` | Inicia o backend localmente na máquina com nodemon (porta 3000) |
-| `npm run local:frontend` | Inicia o frontend localmente na máquina com Vite HMR (porta 5173) |
-| `npm run local:seed` | Executa o script de ingestão/seed nativamente na máquina |
-| **Docker (Produção & Limpeza)** | |
-| `npm run prod` | Inicia o ambiente de produção em background |
-| `npm run prod:build` | Compila o frontend, constrói imagens de produção e sobe o Nginx |
-| `npm run prod:down` | Encerra os containers do ambiente de produção |
-| `npm run clean:all` | Remove completamente todos os containers, redes e volumes criados |
+| Comando                         | Descrição                                                               |
+| :------------------------------ | :---------------------------------------------------------------------- |
+| **Docker (Desenvolvimento)**    |                                                                         |
+| `npm run dev`                   | Inicia o ambiente completo no Docker com logs em tempo real             |
+| `npm run dev:d`                 | Inicia o ambiente de desenvolvimento em background (modo detached)      |
+| `npm run dev:build`             | Reconstrói as imagens de desenvolvimento e sobe os containers           |
+| `npm run dev:logs`              | Exibe e acompanha os logs unificados de todos os containers             |
+| `npm run dev:backend`           | Exibe os logs em tempo real apenas do container backend                 |
+| `npm run dev:frontend`          | Exibe os logs em tempo real apenas do container frontend                |
+| `npm run dev:down`              | Encerra e remove os containers de desenvolvimento                       |
+| `npm run seed`                  | Executa a sincronização incremental dos arquivos de dados via container |
+| `npm run seed:force`            | Força a reimportação completa de todos os arquivos ignorando hash MD5   |
+| **Execução Local / Nativa**     |                                                                         |
+| `npm run local:install`         | Instala as dependências do `backend` e `frontend` na máquina            |
+| `npm run local:db`              | Inicia apenas o container do PostgreSQL em background                   |
+| `npm run local:backend`         | Inicia o backend localmente na máquina com nodemon (porta 3000)         |
+| `npm run local:frontend`        | Inicia o frontend localmente na máquina com Vite HMR (porta 5173)       |
+| `npm run local:seed`            | Executa o script de ingestão/seed nativamente na máquina                |
+| **Docker (Produção & Limpeza)** |                                                                         |
+| `npm run prod`                  | Inicia o ambiente de produção em background                             |
+| `npm run prod:build`            | Compila o frontend, constrói imagens de produção e sobe o Nginx         |
+| `npm run prod:down`             | Encerra os containers do ambiente de produção                           |
+| `npm run clean:all`             | Remove completamente todos os containers, redes e volumes criados       |
 
 ---
 
 ## 📡 Documentação dos Endpoints da API <a id="documentação-dos-endpoints-da-api"></a><a id="documentacao-da-api"></a>
 
 ### `GET /api/tuss`
+
 Consulta paginada com busca textual tokenizada e ranqueamento por relevância.
 
 #### Parâmetros aceitos:
-| Parâmetro | Tipo | Padrão | Descrição |
-| :--- | :--- | :--- | :--- |
-| `q` | `string` | `""` | Termo de pesquisa (código, nome do procedimento, medicamento, fabricante ou modelo) |
-| `source` | `string` | `all` | Filtro por tabela (`all`, `tuss-18`, `tuss-19`, `tuss-20`, `tuss-22`, `tuss-24`) |
-| `page` | `integer` | `1` | Página atual da listagem |
-| `limit` | `integer` | `15` | Quantidade de registros por página (máximo 100) |
+
+| Parâmetro | Tipo      | Padrão | Descrição                                                                           |
+| :-------- | :-------- | :----- | :---------------------------------------------------------------------------------- |
+| `q`       | `string`  | `""`   | Termo de pesquisa (código, nome do procedimento, medicamento, fabricante ou modelo) |
+| `source`  | `string`  | `all`  | Filtro por tabela (`all`, `tuss-18`, `tuss-19`, `tuss-20`, `tuss-22`, `tuss-24`)    |
+| `page`    | `integer` | `1`    | Página atual da listagem                                                            |
+| `limit`   | `integer` | `15`   | Quantidade de registros por página (máximo 100)                                     |
 
 #### Exemplo de Resposta:
+
 ```json
 {
   "data": [
@@ -489,6 +523,7 @@ Consulta paginada com busca textual tokenizada e ranqueamento por relevância.
 ---
 
 ### `GET /api/stats`
+
 Retorna as estatísticas consolidadas e contagens de registros por categoria TUSS.
 
 ```json
@@ -508,20 +543,21 @@ Retorna as estatísticas consolidadas e contagens de registros por categoria TUS
 ---
 
 ### `GET /api/tuss/:codigo`
+
 Retorna todos os detalhes cadastrais e metadados de um código TUSS específico.
 
 ---
 
 ## ⚡ Benchmarks de Performance <a id="benchmarks-de-performance"></a><a id="benchmarks"></a>
 
-| Cenário de Teste / Consulta | Volume da Base | Estratégia Técnica | Tempo Médio de Resposta |
-| :--- | :---: | :--- | :---: |
-| **Troca de Categoria (TUSS-19)** | 1,38 milhão de linhas | Índice Composto `(source, id)` + Cache de Totais | **~8ms** |
-| **Troca de Categoria (Todas)** | 1,44 milhão de linhas | Scan Direto na Primary Key + Cache de Totais | **~2ms** |
-| **Busca por Código Exato** (`79989985`) | 1,44 milhão de linhas | GIN Trigram + B-Tree em `codigo_tuss` | **~12ms** |
-| **Busca Multitermo** (`fresa tungstenio`) | 1,44 milhão de linhas | FTS GIN (`fresa:* & tungstenio:*`) | **~25ms** |
-| **Busca Ampla com Raiz** (`ultrasson`) | 1,44 milhão de linhas | FTS Stemming Português (`ultrasson:*`) | **~85ms** |
-| **Busca Curta de Alta Frequência** (`us`) | 1,44 milhão de linhas | FTS GIN + CTE Candidate Pool (`LIMIT 2000`) | **~186ms** |
+| Cenário de Teste / Consulta               |    Volume da Base     | Estratégia Técnica                               | Tempo Médio de Resposta |
+| :---------------------------------------- | :-------------------: | :----------------------------------------------- | :---------------------: |
+| **Troca de Categoria (TUSS-19)**          | 1,38 milhão de linhas | Índice Composto `(source, id)` + Cache de Totais |        **~8ms**         |
+| **Troca de Categoria (Todas)**            | 1,44 milhão de linhas | Scan Direto na Primary Key + Cache de Totais     |        **~2ms**         |
+| **Busca por Código Exato** (`79989985`)   | 1,44 milhão de linhas | GIN Trigram + B-Tree em `codigo_tuss`            |        **~12ms**        |
+| **Busca Multitermo** (`fresa tungstenio`) | 1,44 milhão de linhas | FTS GIN (`fresa:* & tungstenio:*`)               |        **~25ms**        |
+| **Busca Ampla com Raiz** (`ultrasson`)    | 1,44 milhão de linhas | FTS Stemming Português (`ultrasson:*`)           |        **~85ms**        |
+| **Busca Curta de Alta Frequência** (`us`) | 1,44 milhão de linhas | FTS GIN + CTE Candidate Pool (`LIMIT 2000`)      |       **~186ms**        |
 
 ---
 
@@ -579,9 +615,10 @@ sistema-tuss/
 
 ## 👤 Autor <a id="autor"></a>
 
-Desenvolvido por **Jadson Cerqueira**  
-- LinkedIn: [linkedin.com/in/seu-perfil](https://www.linkedin.com)
-- GitHub: [github.com/seu-usuario](https://github.com)
+Desenvolvido por **Jadson Cerqueira**
+
+- LinkedIn: [linkedin.com/in/jadsoncerqueira](https://www.linkedin.com)
+- GitHub: [github.com/jadsoncerqueira](https://github.com)
 
 ---
 
