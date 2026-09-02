@@ -1,0 +1,36 @@
+{
+  "name": "sistema-tuss",
+  "version": "1.0.0",
+  "description": "Sistema Full Stack com Docker (Desenvolvimento e Produção)",
+  "private": true,
+  "scripts": {
+    "dev": "docker compose up",
+    "dev:d": "docker compose up -d",
+    "dev:build": "docker compose up --build",
+    "dev:down": "docker compose down",
+    "dev:logs": "docker compose logs -f",
+    "dev:backend": "docker compose logs -f backend",
+    "dev:frontend": "docker compose logs -f frontend",
+    "seed": "docker compose exec backend npm run seed",
+    "seed:force": "docker compose exec backend node src/seed.js --force",
+    "prod": "docker compose -f docker-compose.prod.yml up -d",
+    "prod:build": "docker compose -f docker-compose.prod.yml up -d --build",
+    "prod:down": "docker compose -f docker-compose.prod.yml down",
+    "prod:logs": "docker compose -f docker-compose.prod.yml logs -f",
+    "prod:ps": "docker compose -f docker-compose.prod.yml ps",
+    "clean": "docker compose down -v --remove-orphans",
+    "clean:all": "docker compose down -v --remove-orphans && docker compose -f docker-compose.prod.yml down -v --remove-orphans"
+  },
+  "keywords": [
+    "docker",
+    "fullstack",
+    "react",
+    "vite",
+    "express",
+    "nodejs",
+    "postgresql",
+    "tuss"
+  ],
+  "author": "",
+  "license": "ISC"
+}

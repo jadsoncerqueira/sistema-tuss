@@ -1,0 +1,79 @@
+services:
+  # ----------------------------------------------------
+  # BANCO DE DADOS (PostgreSQL)
+  # ----------------------------------------------------
+  db:
+    image: postgres:16-alpine
+    container_name: tuss_db_dev
+    environment:
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+      POSTGRES_DB: ${DB_NAME:-tuss_db}
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - db_data_dev:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-postgres} -d ${DB_NAME:-tuss_db}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - tuss-network
+
+  # ----------------------------------------------------
+  # BACKEND (Node.js + Express + Nodemon)
+  # ----------------------------------------------------
+  backend:
+    build:
+      context: ./backend
+      target: development
+    container_name: tuss_backend_dev
+    ports:
+      - "${BACKEND_PORT:-3000}:3000"
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+      DATABASE_URL: postgres://${DB_USER:-postgres}:${DB_PASSWORD:-postgres}@db:5432/${DB_NAME:-tuss_db}
+    volumes:
+      # Espelha o código local para dentro do container (Hot-Reload)
+      - ./backend:/app
+      # Mapeia a pasta fonte com todos os dados (TUSS-19, TUSS-24, etc.)
+      - ./fonte:/app/fonte:ro
+      # Protege os módulos do container de serem sobrescritos pelo host
+      - /app/node_modules
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - tuss-network
+
+  # ----------------------------------------------------
+  # FRONTEND (React + Vite + HMR)
+  # ----------------------------------------------------
+  frontend:
+    build:
+      context: ./frontend
+      target: development
+    container_name: tuss_frontend_dev
+    ports:
+      - "${FRONTEND_PORT:-5173}:5173"
+    environment:
+      NODE_ENV: development
+      CHOKIDAR_USEPOLLING: "true"
+      WATCHPACK_POLLING: "true"
+    volumes:
+      # Espelha o código local para refletir alterações em tempo real
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    networks:
+      - tuss-network
+
+networks:
+  tuss-network:
+    driver: bridge
+
+volumes:
+  db_data_dev:
