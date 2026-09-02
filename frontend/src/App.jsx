@@ -3,6 +3,7 @@ import {
   Activity,
   Database,
   Search,
+  RefreshCw,
   CheckCircle2,
   AlertCircle,
   Calendar,
