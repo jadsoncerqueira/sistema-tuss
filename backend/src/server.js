@@ -27,6 +27,20 @@ async function startServer() {
       console.log(`🚀 [Server] Backend MVC rodando na porta ${PORT} [Modo: ${process.env.NODE_ENV || 'development'}]`);
     });
 
+    // Graceful Shutdown para containers Docker
+    const gracefulShutdown = async (signal) => {
+      console.log(`\n🛑 [Server] Recebido sinal ${signal}. Encerrando conexões com segurança...`);
+      server.close(async () => {
+        const { pool } = require('./config/db');
+        await pool.end();
+        console.log('🔌 [Server] Pool de conexões do PostgreSQL encerrado. Processo finalizado.');
+        process.exit(0);
+      });
+    };
+
+    process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
+    process.on('SIGINT', () => gracefulShutdown('SIGINT'));
+
     return server;
   } catch (error) {
     console.error('❌ [Server] Falha fatal ao iniciar aplicação backend:', error);

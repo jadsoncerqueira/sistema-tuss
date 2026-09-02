@@ -19,10 +19,25 @@ class TussController {
 
   /**
    * GET /api/health
-   * Healthcheck de liveness/readiness
+   * Healthcheck detalhado com verificação do PostgreSQL e tempo de atividade
    */
   static async healthCheck(req, res) {
-    res.status(200).json({ status: 'ok', uptime: process.uptime() });
+    try {
+      await TussModel.getTotalCount();
+      res.status(200).json({
+        status: 'healthy',
+        database: 'connected',
+        uptimeSeconds: Math.floor(process.uptime()),
+        timestamp: new Date().toISOString()
+      });
+    } catch (err) {
+      res.status(503).json({
+        status: 'unhealthy',
+        database: 'disconnected',
+        error: err.message,
+        timestamp: new Date().toISOString()
+      });
+    }
   }
 
   /**
@@ -50,8 +65,10 @@ class TussController {
     try {
       const page = Math.max(1, parseInt(req.query.page, 10) || 1);
       const limit = Math.min(100, Math.max(1, parseInt(req.query.limit, 10) || 15));
-      const search = (req.query.q || req.query.search || '').trim();
-      const source = (req.query.source || '').trim();
+      // Limita termo de pesquisa a 255 caracteres para prevenir abusos
+      const rawSearch = (req.query.q || req.query.search || '').trim().slice(0, 255);
+      const search = rawSearch;
+      const source = (req.query.source || '').trim().slice(0, 50);
 
       const isNumericOnly = /^\d+$/.test(search);
       const tsQueryStr = buildTsQuery(search);

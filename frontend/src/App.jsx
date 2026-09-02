@@ -125,6 +125,17 @@ export default function App() {
     fetchProcedures(1, '', 'all');
   }, []);
 
+  // Fecha o modal ao pressionar a tecla Escape
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && selectedItem) {
+        setSelectedItem(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedItem]);
+
   // Executa busca apenas no submit (Enter ou clique no botão Buscar)
   const handleSearchSubmit = (e) => {
     if (e) e.preventDefault();
@@ -518,6 +529,7 @@ export default function App() {
                             onClick={() => copyToClipboard(item.codigo_tuss, item.id)}
                             className="text-slate-400 hover:text-primary transition-colors p-1 rounded hover:bg-slate-100"
                             title="Copiar Código"
+                            aria-label={`Copiar código TUSS ${item.codigo_tuss}`}
                           >
                             {copiedId === item.id ? (
                               <Check className="h-3.5 w-3.5 text-emerald-600" />
@@ -651,6 +663,7 @@ export default function App() {
               <button
                 onClick={() => setSelectedItem(null)}
                 className="text-slate-400 hover:text-slate-600 rounded-md p-1 hover:bg-slate-100"
+                aria-label="Fechar detalhes do procedimento"
               >
                 <X className="h-5 w-5" />
               </button>
