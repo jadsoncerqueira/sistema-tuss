@@ -93,6 +93,7 @@ function inferSource(filename, item) {
   if (lower.includes('tuss-19') || lower.includes('materiais') || lower.includes('opme')) return 'tuss-19';
   if (lower.includes('tuss-18') || lower.includes('taxas')) return 'tuss-18';
   if (lower.includes('tuss-20') || lower.includes('medicamentos')) return 'tuss-20';
+  if (lower.includes('tuss-22') || lower.includes('procedimentos')) return 'tuss-22';
   return 'tuss-22';
 }
 

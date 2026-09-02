@@ -602,7 +602,7 @@ sistema-tuss/
 │   ├── Dockerfile            # Multi-stage build (dev Vite / prod Nginx)
 │   ├── vite.config.js        # Configuração do Vite com proxy e Tailwind v4
 │   └── package.json
-├── fonte/                    # Bases de dados oficiais (TUSS-19, TUSS-20, TUSS-24, TUSS-18)
+├── fonte/                    # Bases de dados oficiais (TUSS-18, TUSS-19, TUSS-20, TUSS-22, TUSS-24)
 ├── docker-compose.yml        # Orquestração do ambiente de Desenvolvimento
 ├── docker-compose.prod.yml   # Orquestração do ambiente de Produção
 ├── .env.example              # Modelo de variáveis de ambiente raiz
