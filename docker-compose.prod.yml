@@ -52,7 +52,7 @@ services:
     container_name: tuss_frontend_prod
     restart: always
     ports:
-      - "${PROD_PORT:-80}:80"
+      - "${PROD_PORT:-5173}:5173"
     depends_on:
       - backend
     networks:

@@ -20,7 +20,7 @@ CMD ["npm", "run", "dev"]
 # ==========================================
 FROM base AS production
 ENV NODE_ENV=production
-RUN npm ci --only=production
+RUN if [ -f package-lock.json ]; then npm ci --omit=dev; else npm install --omit=dev; fi
 COPY src ./src
 USER node
 EXPOSE 3000

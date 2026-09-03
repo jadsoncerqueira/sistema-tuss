@@ -451,7 +451,7 @@ Abra o navegador em [http://localhost:5173](http://localhost:5173). O Vite reali
 Para testar a versão final compilada com Nginx como proxy reverso e servidor estático de alta performance:
 
 ```bash
-# Compila o frontend, empacota o backend de produção e sobe o Nginx na porta 80:
+# Compila o frontend, empacota o backend de produção e sobe o Nginx na porta 5173:
 npm run prod:build
 
 # Para visualizar os containers ativos:
@@ -461,8 +461,8 @@ npm run prod:ps
 npm run prod:down
 ```
 
-- 🌐 **Aplicação em Produção (Nginx):** [http://localhost](http://localhost) (Porta 80)
-- 🔌 **Proxy da API:** [http://localhost/api](http://localhost/api)
+- 🌐 **Aplicação em Produção (Nginx):** [http://localhost:5173](http://localhost:5173) (Porta 5173)
+- 🔌 **Proxy da API:** [http://localhost:5173/api](http://localhost:5173/api)
 
 ---
 
